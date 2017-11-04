@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>The Great Map of Brews</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+    <link rel="stylesheet" href="httpss://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Comfortaa|Roboto" rel="stylesheet">
+
+    <link href="/static/css/easy-button.css" rel="stylesheet">
+    <script src="/static/js/easy-button.js"></script>
+    <link rel="stylesheet" href="/static/css/L.Control.Locate.min.css" />
+    <script src="/static/js/L.Control.Locate.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/static/css/MarkerCluster.css" />
+    <link rel="stylesheet" href="/static/css/MarkerCluster.Default.css" />
+    <script src="/static/js/leaflet.markercluster.js" charset="utf-8"></script>
+    <!--
+    <link rel="stylesheet" href="/static/css/L.Control.Sidebar.css" />
+    <link rel="stylesheet" href="/static/css/L.Control.Sidebar.scss" />
+    <script src="/static/js/L.Control.Sidebar.js" charset="utf-8"></script>
+    -->
+    <link rel="stylesheet" href="/static/css/leaflet-sidebar.css" />
+    <script src="/static/js/L.Control.Sidebar.js" charset="utf-8"></script>
+    <script src="/static/js/leaflet-sidebar.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css?family=Ewert" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="w3-bar-block w3-light-blue w3-small w3-card w3-panel w3-display-container">
+        <h1 style="font-family: 'Ewert', cursive; font-weight: 500; margin-bottom:0; padding-bottom:0;" class="title w3-bar-item w3-xxxlarge">The Great Map of Brews</h1>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="index">Map</a> </h3>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="join">Login</a></h3>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="join">Join</a></h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="about">About</a></h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="breweries_list">Ranked List</a></h3>
+    </div>
+
+    <div class="w3-card" id='map'>
+        <div id="sidebar" class="sidebar collapsed">
+            <!-- Nav tabs -->
+            <div class="sidebar-tabs">
+                <ul role="tablist">
+                    <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                    <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+                    <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+                </ul>
+
+                <ul role="tablist">
+                    <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-content">
+                <div class="sidebar-pane" id="home">
+                    <h1 class="sidebar-header">
+                        sidebar-v2
+                        <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+
+                    <p id="demo">A responsive sidebar for mapping libraries like <a href="https://leafletjs.com/">Leaflet</a> or <a href="https://openlayers.org/">OpenLayers</a>.</p>
+
+
+                </div>
+
+                <div class="sidebar-pane" id="profile">
+                    <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                </div>
+
+                <div class="sidebar-pane" id="messages">
+                    <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                </div>
+
+                <div class="sidebar-pane" id="settings">
+                    <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="leaflet-sidebar.js"></script>
+
+
+    <script>
+        L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtZG90c29uMTk5MiIsImEiOiJRc2VOSXpvIn0.Bhg-j6XJ2sQGI48SjKOuYg';
+        var map = L.mapbox.map('map', 'mapbox.streets')
+            .setView([38.03785, -84.850783], 3);
+
+
+        var sidebar = L.control.sidebar('sidebar', {
+            position: 'right'
+        }).addTo(map);
+
+
+        map.addControl(L.control.locate({
+            locateOptions: {
+                maxZoom: 10
+            }
+        }));
+
+        var beer = omnivore.csv("/static/datasets/Breweries.csv", null, L.mapbox.featureLayer()).on("ready", function() {
+            var markers = L.markerClusterGroup({
+                chunkedLoading: true
+            });
+
+
+            beer.on('click', function(a) {
+                console.log(a.layer.feature.properties.name);
+                var content = a.layer.feature.properties.name;
+
+            })
+
+
+            markers.addLayer(beer);
+            markers.bindPopup(function(layer) {
+                console.log(layer.feature.properties.name)
+                return layer.feature.properties.name
+            }).addTo(map);
+
+
+        });
+
+
+        L.easyButton('fa-home', function() {
+            map.setView([38.03785, -84.850783], 4);
+        }).addTo(map);
+
+    </script>
+</body>
+
+</html>

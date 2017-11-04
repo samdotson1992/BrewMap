@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ewert" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="w3-bar-block w3-light-blue w3-small w3-card w3-panel w3-display-container">
+        <h1 style="font-family: 'Ewert', cursive; font-weight: 500; margin-bottom:0; padding-bottom:0;" class="title w3-bar-item w3-xxxlarge">The Great Map of Brews</h1>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="index">Map</a> </h3>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="join">Login</a></h3>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="join">Join</a></h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="about">About</a></h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="breweries_list">Ranked List</a></h3>
+    </div>
+
+    <div id="box" class="w3-container w3-half">
+        <div class="w3-panel">
+            <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-up')">Sign Up</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-in')">Sign In</button>
+        </div>
+        <div id="sign-up" class="w3-container w3-card Tab w3-margin-top">
+            <ul id class="w3-container form">
+                <p>
+                    <li><input class="w3-input" type="text" id="email_signup" /></li>
+                    <label>Email</label></p>
+                <p>
+                    <li> <input class="w3-input" type="text" id="username_signup" /></li>
+                    <label>Username</label></p>
+                <p>
+                    <li> <input class="w3-input" type="text" id="password_signup" /></li>
+                    <label>Password</label></p>
+                <p>
+                    <li> <input class="w3-input" type="text" id="re_password_signup" /></li>
+                    <label>Retype password</label></p>
+                <li><button class="w3-button w3-section w3-grey" onclick="signUp()">Submit</button></li>
+            </ul>
+        </div>
+
+        <div id="sign-in" style="display:none" class="w3-container w3-card Tab w3-margin-top">
+            <ul class="w3-container form">
+                <p>
+                    <li><input class="w3-input" type="text" id="email_login" /></li>
+                    <label>Email</label></p>
+                <p>
+                    <li> <input class="w3-input" type="text" id="username_login" /></li>
+                    <label>Username</label></p>
+                <p>
+                    <li> <input class="w3-input" type="text" id="password_login" /></li>
+                    <label>Password</label></p>
+                <li><button class="w3-button w3-section w3-grey" onclick="signIn()">Submit</button></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

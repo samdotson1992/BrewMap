@@ -4,10 +4,9 @@ import string
 import json
 import psycopg2
 
-DB_STRING="dbname='postgres' user='postgres' host='localhost' password='rascal1!'"
-conn=psycopg2.connect(DB_STRING)
-cur=conn.cursor()
 
+conn = psycopg2.connect("dbname=postgres password=rascal1! host=localhost  user=postgres")
+cur=conn.cursor()
     
 class StringGenerator(object):
     @cherrypy.expose
@@ -33,6 +32,16 @@ class StringGenerator(object):
             return ""
         except:
             print("Error in inserting sign up data")
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def rank(self, urlParam1=None):
+        try:
+            cur.execute("SELECT * FROM breweries limit 20")
+            cur.fetchone()
+        except:
+            print("Error with GET")
     
     @cherrypy.expose
     def index(self):
@@ -50,10 +59,7 @@ class StringGenerator(object):
     def join(self):
         return open('join.html')
     
-    
-    
 
-    
 def cleanup_database():
     """
     Destroy the `user_string` table from the database
@@ -82,6 +88,7 @@ def setup_database():
 if __name__ == '__main__':
     cherrypy.config.update({'server.socket_host': '127.0.0.2',
                         'server.socket_port': 8000,
+                        'server.shutdown_timeout': 1
                        })
     conf = {
         '/': {
@@ -96,4 +103,4 @@ if __name__ == '__main__':
     
     cherrypy.engine.subscribe('start', setup_database)
     cherrypy.engine.subscribe('stop', cleanup_database)
-    cherrypy.quickstart(StringGenerator(), '/', conf)   
+    cherrypy.quickstart(StringGenerator(), '/', conf)

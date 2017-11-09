@@ -5,7 +5,7 @@ import json
 import psycopg2
 
 
-conn = psycopg2.connect("dbname=postgres password=rascal1! host=localhost  user=postgres")
+conn = psycopg2.connect("dbname=samsam  user=samsam")
 cur=conn.cursor()
     
 class StringGenerator(object):
@@ -19,6 +19,7 @@ class StringGenerator(object):
             conn.commit()
             return ""
         except:
+            conn.rollback()
             print("Error in inserting sign in data")
     
     @cherrypy.expose
@@ -31,6 +32,7 @@ class StringGenerator(object):
             conn.commit()
             return ""
         except:
+            conn.rollback()
             print("Error in inserting sign up data")
 
     @cherrypy.expose
@@ -39,9 +41,17 @@ class StringGenerator(object):
     def rank(self, urlParam1=None):
         try:
             cur.execute("SELECT * FROM breweries limit 20")
-            cur.fetchone()
-        except:
+            #print(cur.fetchall())
+            data = cur.fetchall()
+            print(data)
+            obj=[]
+            for i in data:
+            	obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
+            print(json.dumps(obj)) 
+            return json.dumps(obj)   
+        except: 
             print("Error with GET")
+            conn.rollback()
     
     @cherrypy.expose
     def index(self):
@@ -71,23 +81,22 @@ def cleanup_database():
         conn.commit()
     except:
         print("Error in dropping tables")
+        conn.rollback()
 
 def setup_database():
-    """
-    Create the `user_data` table in the database
-    on server startup
-    """
     try:
-        cur.execute("CREATE TABLE sign_in (ID INTEGER NOT NULL PRIMARY KEY, username_login varchar(255), email_login varchar(255), password_login varchar(255))")
-        cur.execute("CREATE TABLE user_sign_up (ID INTEGER NOT NULL PRIMARY KEY, username_signup varchar(255), email_signup varchar(255), password_signup varchar(255), re_password_signup varchar(255))")
+        cur.execute("CREATE TABLE sign_in (username_login varchar(255), email_login varchar(255), password_login varchar(255))")
+        cur.execute("CREATE TABLE user_sign_up (username_signup varchar(255), email_signup varchar(255), password_signup varchar(255), re_password_signup varchar(255))")
         conn.commit()
     except:
         print("Error in creating tables")
+        conn.rollback()
         cleanup_database()
+        
 
 if __name__ == '__main__':
-    cherrypy.config.update({'server.socket_host': '127.0.0.2',
-                        'server.socket_port': 8000,
+    cherrypy.config.update({'server.socket_host': '0.0.0.0',
+                        'server.socket_port': 8080,
                         'server.shutdown_timeout': 1
                        })
     conf = {

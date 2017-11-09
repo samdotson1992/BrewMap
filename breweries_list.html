@@ -19,12 +19,11 @@
             <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="breweries_list">Ranked List</a></h3>
     </div>
     
-    <h1>So what is this all about?</h1>
-    <p>This is a paragraph.</p>
     <button type="button" onclick="get_data()" class="w3-button">Click me!</button>
-
-
-
+  <div>
+<table id="data" style="width:100%" > 
+</table>
+ </div>
     <script>
     function get_data() {
   $.ajax({
@@ -32,15 +31,20 @@
     type: 'GET',
     dataType: 'json',
     success(response) {
-     console.log(response)
+     console.log(response);
+var data =JSON.parse(response);
+console.log(data);
+list="<tr><th>Name</th><th> Latitude</th><th>Longitude</th>";
+for(i in data){list+="<tr><th>"+(data[i].name)+"</th><th>"+(data[i].latitude)+"</th> <th>"+(data[i].longitude)+"</th></tr>"}
+document.getElementById("data").innerHTML =list;
     }, error(jqXHR, status, errorThrown) {
       console.log(jqXHR);
     }
   });
 }
 
-
     </script>
 </body>
 
 </html>
+

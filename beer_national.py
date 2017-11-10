@@ -19,7 +19,6 @@ class StringGenerator(object):
             conn.commit()
             return ""
         except:
-            conn.rollback()
             print("Error in inserting sign in data")
     
     @cherrypy.expose
@@ -32,7 +31,6 @@ class StringGenerator(object):
             conn.commit()
             return ""
         except:
-            conn.rollback()
             print("Error in inserting sign up data")
 
     @cherrypy.expose
@@ -91,7 +89,6 @@ def setup_database():
     except:
         print("Error in creating tables")
         conn.rollback()
-        cleanup_database()
         
 
 if __name__ == '__main__':

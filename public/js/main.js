@@ -43,8 +43,7 @@ $.ajax({
 
 }
 
-function signIn(){
-    
+function signIn(){   
 var data =JSON.stringify({"username_login":(document.getElementById('username_login').value),"email_login":(document.getElementById('email_login').value),"password_login": document.getElementById('password_login').value}) 
 
 console.log(data)

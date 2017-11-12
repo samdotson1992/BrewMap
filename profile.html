@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ewert" rel="stylesheet">
+</head>
+
+<body>
+    <div class="w3-bar-block w3-light-blue w3-small w3-card w3-panel w3-display-container">
+        <h1 style="font-family: 'Ewert', cursive; font-weight: 500; margin-bottom:0; padding-bottom:0;" class="title w3-bar-item w3-xxxlarge">The Great Map of Brews</h1>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="index">Map</a> </h3>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="join">Login or Join</a></h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="about">About</a></h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="breweries_list">Ranked List</a></h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="profile">Profile</a></h3>
+
+    </div>
+    <div>
+        <h1>Account</h1>
+        <h2>Bob</h2>
+  <form class="w3-container w3-card-4">
+  <h2>What kind of beer do you enjoy?</h2>
+  <p>
+  <input class="w3-radio" type="radio" name="hoppy" value="hoppy">
+  <label>Hoppy: IPAs</label></p>
+  <p>
+  <input class="w3-radio" type="radio" name="dark" value="dark">
+  <label>Dark: stout, porter</label></p>
+  <p>
+  <input class="w3-radio" type="radio" name="light" value="light">
+  <label>Light: Wheat, pale ale</label></p>
+  <p>
+  <input class="w3-radio" type="radio" name="funky" value="funky">
+  <label>Funky: Sours, Spiced, Smoked</label></p>   
+    <p>
+  <input class="w3-radio" type="radio" name="lager" value="lager">
+  <label>Lager</label></p>   
+  <p>
+  <input class="w3-radio" type="radio" name="other" value="other">
+  <label>I don't like beer: Hard ciders</label></p>  
+</form>
+        
+        
+        
+    <script>
+        function get_data() {
+            $.ajax({
+                url: "rank",
+                type: 'GET',
+                dataType: 'json',
+                success(response) {
+                    console.log(response);
+                    var data = JSON.parse(response);
+                    console.log(data);
+                    list = "<tr><th>Name</th><th> Latitude</th><th>Longitude</th>";
+                    for (i in data) {
+                        list += "<tr><th>" + (data[i].name) + "</th><th>" + (data[i].latitude) + "</th> <th>" + (data[i].longitude) + "</th></tr>"
+                    }
+                    document.getElementById("data").innerHTML = list;
+                },
+                error(jqXHR, status, errorThrown) {
+                    console.log(jqXHR);
+                }
+            });
+        }
+
+
+        function signIn() {
+            var data = JSON.stringify({
+                "username_login": (document.getElementById('username_login').value),
+                "email_login": (document.getElementById('email_login').value),
+                "password_login": document.getElementById('password_login').value
+            })
+
+            console.log(data)
+
+            $.ajax({
+                type: "POST",
+                url: "sign_in",
+                data: data,
+                contentType: 'application/json',
+                dataType: 'json',
+                error: function() {
+                    console.log("error");
+                },
+                success: function() {
+                    console.log("success");
+                }
+            });
+
+        }
+
+    </script>
+</body>
+
+</html>

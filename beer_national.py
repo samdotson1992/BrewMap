@@ -36,9 +36,9 @@ class StringGenerator(object):
         except:
             print("Error in inserting sign up data")
 
-   # @cherrypy.expose
-    #@cherrypy.tools.json_out()
-    #def user_profile(self, urlParam1=None):
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def user_profile(self, urlParam1=None):
         
     
             
@@ -76,7 +76,10 @@ class StringGenerator(object):
     def join(self):
         return open('join.html')
     
-
+    @cherrypy.expose
+    def join(self):
+        return open('profile.html')
+    
 def cleanup_database():
     """
     Destroy the `user_string` table from the database

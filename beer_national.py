@@ -36,9 +36,9 @@ class StringGenerator(object):
         except:
             print("Error in inserting sign up data")
 
-    @cherrypy.expose
-    @cherrypy.tools.json_out()
-    def user_profile(self, urlParam1=None):
+    #@cherrypy.expose
+    #@cherrypy.tools.json_out()
+    #def user_profile(self, urlParam1=None):
         
     
             

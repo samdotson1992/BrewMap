@@ -8,7 +8,6 @@
      <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Ewert" rel="stylesheet">
 </head>
-
 <body>
      <div class="w3-bar-block w3-light-blue w3-small w3-card w3-panel w3-display-container">
             <h1 style="font-family: 'Ewert', cursive; font-weight: 500; margin-bottom:0; padding-bottom:0;" class="title w3-bar-item w3-xxxlarge">The Great Map of Brews</h1> 
@@ -18,13 +17,17 @@
             <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="breweries_list">Ranked List</a></h3>
             <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="profile">Profile</a></h3>
     </div>
-    
-    <button type="button" onclick="get_data()" class="w3-button">Click me!</button>
+    <button type="button" onclick="get_data()" class="w3-button">Get Data</button>
+    <input class="w3-input w3-animate-input" type="text"  id="query" style="width:135px"><br>
+    <button type="button" onclick="get_brewery()" class="w3-button">Get Brewery</button>
   <div>
 <table class="w3-table-all" id="data" style="width:100%">
 </table>
  </div>
     <script>
+
+        var query =document.getElementById("query").value
+
     function get_data() {
   $.ajax({
     url: "rank",
@@ -42,6 +45,26 @@ document.getElementById("data").innerHTML =list;
     }
   });
 }
+    function get_brewery(query) {
+         $.ajax({
+    url: "get_brewery",
+    type: 'GET',
+    data: query,
+    dataType: 'json',
+    success(response) {
+     console.log(response);
+var data =JSON.parse(response);
+console.log(data);
+list="<tr><th>Name</th><th> Latitude</th><th>Longitude</th>";
+for(i in data){list+="<tr><th>"+(data[i].name)+"</th><th>"+(data[i].latitude)+"</th><th>"+(data[i].longitude)+"</th></tr>"}
+document.getElementById("data").innerHTML =list;
+    }, error(jqXHR, status, errorThrown) {
+      console.log(jqXHR);
+    }
+  });
+}
+
+
 
     </script>
 </body>

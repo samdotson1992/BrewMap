@@ -39,13 +39,12 @@ class StringGenerator(object):
     #@cherrypy.expose
     #@cherrypy.tools.json_out()
     #def user_profile(self, urlParam1=None):
-        
     
-            
+
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def rank(self, urlParam1=None):
+       def rank(self, urlParam1=None):
         try:
             cur.execute("SELECT * FROM breweries limit 20")
             #print(cur.fetchall())
@@ -60,6 +59,26 @@ class StringGenerator(object):
             print("Error with GET")
             conn.rollback()
     
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def get_brewery(self):
+        try:
+            query = cherrypy.request.json
+            cur.execute("SELECT * FROM breweries %"+query +"%")
+            #print(cur.fetchall())
+            data = cur.fetchall()
+            print(data)
+            obj=[]
+            for i in data:
+            	obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
+            print(json.dumps(obj))
+            return json.dumps(obj)
+        except:
+            print("Error with GET")
+            conn.rollback()
+
     @cherrypy.expose
     def index(self):
         return open('index.html')    
@@ -102,7 +121,6 @@ def setup_database():
     except:
         print("Error in creating tables")
         conn.rollback()
-        
 
 if __name__ == '__main__':
     cherrypy.config.update({'server.socket_host': '0.0.0.0',

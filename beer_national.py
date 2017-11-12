@@ -44,7 +44,7 @@ class StringGenerator(object):
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-        def rank(self, urlParam1=None):
+    def rank(self, urlParam1=None):
         try:
             cur.execute("SELECT * FROM breweries limit 20")
             #print(cur.fetchall())

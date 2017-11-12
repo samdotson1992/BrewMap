@@ -4,7 +4,6 @@ import string
 import json
 import psycopg2
 
-
 conn = psycopg2.connect("dbname=samsam  user=samsam")
 cur=conn.cursor()
     
@@ -17,6 +16,8 @@ class StringGenerator(object):
         try:
             cur.execute("INSERT INTO sign_in (username_login, email_login, password_login) VALUES (%s,%s,%s)",(json_sign_in['username_login'],json_sign_in['email_login'],json_sign_in['password_login']))
             conn.commit()
+            cur.execute("SELECT * FROM sign_in")
+            print(cur.fetchall())
             return ""
         except:
             print("Error in inserting sign in data")
@@ -29,10 +30,18 @@ class StringGenerator(object):
         try:
             cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(json_sign_up['username_signup'],json_sign_up['email_signup'],json_sign_up['password_signup'],json_sign_up['re_password_signup']))
             conn.commit()
+            cur.execute("SELECT * FROM user_sign_up")
+            print(cur.fetchall())
             return ""
         except:
             print("Error in inserting sign up data")
 
+   # @cherrypy.expose
+    #@cherrypy.tools.json_out()
+    #def user_profile(self, urlParam1=None):
+        
+    
+            
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
@@ -86,6 +95,7 @@ def setup_database():
         cur.execute("CREATE TABLE sign_in (username_login varchar(255), email_login varchar(255), password_login varchar(255))")
         cur.execute("CREATE TABLE user_sign_up (username_signup varchar(255), email_signup varchar(255), password_signup varchar(255), re_password_signup varchar(255))")
         conn.commit()
+        
     except:
         print("Error in creating tables")
         conn.rollback()

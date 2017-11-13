@@ -18,7 +18,7 @@ class StringGenerator(object):
             conn.commit()
             cur.execute("SELECT * FROM sign_in")
             print(cur.fetchall())
-            return ""
+            return "it worked"
         except:
             print("Error in inserting sign in data")
     
@@ -32,7 +32,7 @@ class StringGenerator(object):
             conn.commit()
             cur.execute("SELECT * FROM user_sign_up")
             print(cur.fetchall())
-            return ""
+            return "it worked"
         except:
             print("Error in inserting sign up data")
 

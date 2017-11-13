@@ -64,6 +64,7 @@ class StringGenerator(object):
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def get_data(self):
+        print("1")
         try:
             query = cherrypy.request.json
             q=query["query"]

@@ -67,7 +67,7 @@ class StringGenerator(object):
         try:
             query = cherrypy.request.json
             print(query)
-            if query= "":
+            if query== "":
                 cur.execute("SELECT * FROM breweries limit 15")
             else:
                 cur.execute("SELECT * FROM breweries %"+query +"%")

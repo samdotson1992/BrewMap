@@ -1,7 +1,6 @@
 
  L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtZG90c29uMTk5MiIsImEiOiJRc2VOSXpvIn0.Bhg-j6XJ2sQGI48SjKOuYg';
- var map = L.mapbox.map('map', 'mapbox.streets')
-     .setView([38.03785, -84.850783], 3);
+ var map = L.mapbox.map('map', 'mapbox.streets').setView([38.03785, -84.850783], 3);
 
 
  var sidebar = L.control.sidebar('sidebar', {
@@ -68,7 +67,8 @@
          're_password_signup': document.getElementById('re_password_signup').value
      }
 
-     if (obj["3"] != obj["2"]) {
+
+     if(obj["3"] != obj["2"]) {
          alert("Passwords don't match!")
      } else {
          var data = JSON.stringify(obj)

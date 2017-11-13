@@ -59,7 +59,6 @@ class StringGenerator(object):
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
-    @cherrypy.tools.json_out()
     def get_data(self,urlParam1=None):
         print("1")
         query = cherrypy.request.json

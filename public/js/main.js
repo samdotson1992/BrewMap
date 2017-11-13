@@ -1,31 +1,3 @@
- < script src = 'https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js' > </script>
-<script src = 'https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
-
-     <
-     script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" > < /script> <
-     script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" > < /script>
-
-     <
-     script src = "/static/js/easy-button.js" > < /script>
-
-     <
-     script src = "/static/js/L.Control.Locate.min.js"
- charset = "utf-8" > < /script>
-
-     <
-     script src = "/static/js/leaflet.markercluster.js"
- charset = "utf-8" > < /script>
-
-     <
-     script src = "/static/js/L.Control.Sidebar.js"
- charset = "utf-8" > < /script> <
-     script src = "/static/js/leaflet-sidebar.js"
- charset = "utf-8" > < /script>
-
-     <
-     script src = "leaflet-sidebar.js" > < /script> <
-     script src = "main.js" > < /script>
-
 
  L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtZG90c29uMTk5MiIsImEiOiJRc2VOSXpvIn0.Bhg-j6XJ2sQGI48SjKOuYg';
  var map = L.mapbox.map('map', 'mapbox.streets')

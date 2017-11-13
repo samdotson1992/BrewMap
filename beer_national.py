@@ -77,7 +77,7 @@ class StringGenerator(object):
             for i in data:
                 obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
             print(json.dumps(obj))
-            return json.dumps(obj)}
+            return json.dumps(obj)
 
             #print("Error with GET")
             #conn.rollback()

@@ -26,10 +26,11 @@
         </table>
     </div>
     <script>
-        var query = document.getElementById("query").value
+
 
         function get_data(query) {
-            console.log(query)
+         var query = document.getElementById("query").value
+         console.log(query)
 
             $.ajax({
                 url: "get_data",

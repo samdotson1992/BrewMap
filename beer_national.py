@@ -69,7 +69,7 @@ class StringGenerator(object):
             if query== "":
                 cur.execute("SELECT * FROM breweries limit 15")
             else:
-                cur.execute("SELECT * FROM breweries %"+query +"%")
+                cur.execute("SELECT * FROM breweries LIKE %"+query +"%")
         except:
             cur.execute("SELECT * FROM breweries limit 15")
             #print(cur.fetchall())

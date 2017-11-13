@@ -28,10 +28,12 @@
     <script>
 
         function get_data() {
-             var query = JSON.stringify({
+             /*var query = JSON.stringify({
         "query": (document.getElementById("query").value)})
          console.log(query)
 
+*/
+            var query="a"
             $.ajax({
                 url: "get_data/"+query,
                 type: 'GET',

@@ -18,7 +18,6 @@ class StringGenerator(object):
             conn.commit()
             cur.execute("SELECT * FROM sign_in")
             print(cur.fetchall())
-            return "it worked"
         except:
             print("Error in inserting sign in data")
     
@@ -32,7 +31,6 @@ class StringGenerator(object):
             conn.commit()
             cur.execute("SELECT * FROM user_sign_up")
             print(cur.fetchall())
-            return "it worked"
         except:
             print("Error in inserting sign up data")
 
@@ -63,7 +61,7 @@ class StringGenerator(object):
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def get_data(self):
+    def get_data(self, urlParam1=None):
         print("1")
         try:
             query = cherrypy.request.json

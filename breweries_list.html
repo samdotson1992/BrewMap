@@ -27,7 +27,6 @@
     </div>
     <script>
 
-
         function get_data(query) {
          var query = document.getElementById("query").value
          console.log(query)
@@ -48,7 +47,8 @@
                     document.getElementById("data").innerHTML = list;
                 },
                 error(jqXHR, status, errorThrown) {
-                    console.log(jqXHR);
+                    console.log(status);
+                    console.log(errorThrown);
                 }
             });
         }
@@ -68,7 +68,7 @@ document.getElementById("data").innerHTML =list;
       console.log(jqXHR);
     }
   });
-*/
+
         function get_brewery(query)
 
         {
@@ -92,7 +92,7 @@ document.getElementById("data").innerHTML =list;
                 }
             });
         }
-
+*/
     </script>
 </body>
 

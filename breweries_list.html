@@ -19,23 +19,25 @@
         <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="profile">Profile</a></h3>
     </div>
 
-    <input class="w3-input w3-animate-input" type="text" id="query" style="width:135px"><br>
-    <button type="button" onclick="get_data()" class="w3-button">Get Data</button>
+  <!--  <input class="w3-input w3-animate-input" type="text" id="query" style="width:135px"><br>
+    <button type="button" onclick="get_data()" class="w3-button">Get Data</button>-->
+     <button type="button" onclick="get_data('sort_down')" class="w3-button">Sort decending</button>
+    <button type="button" onclick="get_data('sort_up')" class="w3-button">Sort ascending</button>
     <div>
-        <table class="w3-table-all" id="data" style="width:100%">
-        </table>
+        <table class="w3-table-all" id="data" style="width:100%"> </table>
+     <button type="button" onclick="get_data('next')" class="w3-button">Next Page</button>
     </div>
     <script>
 
-        function get_data() {
+        function get_data(param) {
              /*var query = JSON.stringify({
         "query": (document.getElementById("query").value)})
          console.log(query)
+ var query=document.getElementById("query").value
 
-*/ var query=document.getElementById("query").value
-
+*/
             $.ajax({
-                url: "get_data/"+query,
+                url: "get_data/"+param,
                 type: 'GET',
                 dataType: 'json',
                 success(response) {

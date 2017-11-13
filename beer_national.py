@@ -60,16 +60,22 @@ class StringGenerator(object):
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def get_data(self,query=""):
-        print(query)
+    def get_data(self,param=""):
+        print(param)
         print(cherrypy.session.id)
         try:
-            #query = cherrypy.request.json
-            print(query)
-            if query== "":
-                cur.execute("SELECT * FROM breweries limit 15")
+            #param = cherrypy.request.json
+            print(param)
+            if param== "":
+                cur.execute("SELECT * FROM breweries limit 15;")
+            else if param=='sort_up':
+                cur.execute("SELECT * FROM breweries ORDER BY name ASC limit 15;)
+            else if param=='sort_down':
+                cur.execute("SELECT * FROM breweries ORDER BY name DESC limit 15;)
+            else if param=='next':
+                cur.execute("SELECT * FROM breweries limit 15;")
             else:
-                cur.execute("SELECT * FROM breweries WHERE name LIKE '%"+query +"%'")
+                cur.execute("SELECT * FROM breweries limit 15;")
             data = cur.fetchall()
             print(data)
             obj=[]

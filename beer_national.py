@@ -100,7 +100,7 @@ class StringGenerator(object):
         return open('join.html')
     
     @cherrypy.expose
-    def join(self):
+    def profile(self):
         return open('profile.html')
     
 def cleanup_database():

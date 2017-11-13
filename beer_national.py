@@ -69,14 +69,14 @@ class StringGenerator(object):
                 cur.execute("SELECT * FROM breweries limit 15")
             else:
                 cur.execute("SELECT * FROM breweries %"+query +"%")
-            #print(cur.fetchall())
-            data = cur.fetchall()
-            print(data)
-            obj=[]
-            for i in data:
-            	obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
-            print(json.dumps(obj))
-            return json.dumps(obj)
+                #print(cur.fetchall())
+                data = cur.fetchall()
+                print(data)
+                obj=[]
+                for i in data:
+                    obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
+                print(json.dumps(obj))
+                return json.dumps(obj)
         except:
             print("Error with GET")
             conn.rollback()

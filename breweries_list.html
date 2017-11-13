@@ -28,7 +28,8 @@
     <script>
 
         function get_data(query) {
-         var query = document.getElementById("query").value
+             var query = JSON.stringify({
+        "query": (document.getElementById("query").value)})
          console.log(query)
 
             $.ajax({

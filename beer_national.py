@@ -70,6 +70,13 @@ class StringGenerator(object):
                 cur.execute("SELECT * FROM breweries limit 15")
             else:
                 cur.execute("SELECT * FROM breweries WHERE name LIKE %"+query +"%")
+            data = cur.fetchall()
+            print(data)
+            obj=[]
+            for i in data:
+                obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
+            print(json.dumps(obj))
+            return json.dumps(obj)
         except:
             cur.execute("SELECT * FROM breweries limit 15")
             #print(cur.fetchall())

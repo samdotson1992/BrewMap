@@ -62,9 +62,10 @@ class StringGenerator(object):
     @cherrypy.tools.json_out()
     def get_data(self,query=""):
         print("1")
+        print(query)
         print(cherrypy.session.id)
         try:
-            query = cherrypy.request.json
+            #query = cherrypy.request.json
             print(query)
             q=query["query"]
             print(q)

@@ -68,11 +68,11 @@ class StringGenerator(object):
             print(param)
             if param== "":
                 cur.execute("SELECT * FROM breweries limit 15;")
-            else if param=='sort_up':
+            elif param=='sort_up':
                 cur.execute("SELECT * FROM breweries ORDER BY name ASC limit 15;)
-            else if param=='sort_down':
+            elif param=='sort_down':
                 cur.execute("SELECT * FROM breweries ORDER BY name DESC limit 15;)
-            else if param=='next':
+            elif param=='next':
                 cur.execute("SELECT * FROM breweries limit 15;")
             else:
                 cur.execute("SELECT * FROM breweries limit 15;")

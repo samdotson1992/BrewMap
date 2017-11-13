@@ -57,11 +57,10 @@ class StringGenerator(object):
             #print("Error with GET")
             #conn.rollback()
 
-
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def get_data(self, query):
+    def get_data(self,urlParam1=None):
         print("1")
         try:
             query = cherrypy.request.json

@@ -35,8 +35,8 @@
             $.ajax({
                 url: "get_data",
                 type: 'GET',
-                contentType: 'application/json',
                 dataType: 'json',
+                data: query,
                 success(response) {
                     console.log(response);
                     var data = JSON.parse(response);

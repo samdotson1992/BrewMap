@@ -40,11 +40,11 @@ class StringGenerator(object):
     #@cherrypy.tools.json_out()
     #def user_profile(self, urlParam1=None):
     
-
+'''
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-        def rank(self, urlParam1=None):
+    def rank(self, urlParam1=None):
         try:
             cur.execute("SELECT * FROM breweries limit 20")
             #print(cur.fetchall())
@@ -58,12 +58,12 @@ class StringGenerator(object):
         except: 
             print("Error with GET")
             conn.rollback()
-    
+            '''
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def get_brewery(self):
+    def get_data(self):
         try:
             query = cherrypy.request.json
             cur.execute("SELECT * FROM breweries %"+query +"%")

@@ -60,7 +60,7 @@ class StringGenerator(object):
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def get_data(self,urlParam1=None):
+    def get_data(self,query=""):
         print("1")
         print(cherrypy.session.id)
         try:

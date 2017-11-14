@@ -13,26 +13,40 @@ function openTab(evt, TabName) {
  }
 
 
- function signUp() {
-     console.log("sign up is running")
-
-     var obj = {
+ function users(typ) {
+     
+     
+     console.log("users is running")
+     
+     switch (typ) {
+    case 'signIn':
+       var data = JSON.stringify({
+         'username_signup': document.getElementById('username_login').value,
+         'email_signup': document.getElementById('email_login').value,
+         'password_signup': document.getElementById('password_login').value,
+       })      
+        break;
+    case 'signUp':
+         var obj = {
          'username_signup': document.getElementById('username_signup').value,
          'email_signup': document.getElementById('email_signup').value,
          'password_signup': document.getElementById('password_signup').value,
          're_password_signup': document.getElementById('re_password_signup').value
      }
-
-
-     if(obj["3"] != obj["2"]) {
-         alert("Passwords don't match!")
+            if(obj["3"] != obj["2"]) {
+         window.alert("Passwords don't match!")
      } else {
          var data = JSON.stringify(obj)
-         console.log(data)
+         console.log(data)}
+         
+        break;
+    default:
+        window.alert("He's dead Jim")
+}
 
      $.ajax({
          type: "POST",
-         url: "sign_up",
+         url: "users",
          data: data,
          contentType: 'application/json',
          dataType: 'json',
@@ -43,32 +57,6 @@ function openTab(evt, TabName) {
              console.log("success");
          }
      });
-
- }}
-
- function signIn() {
-     var data = JSON.stringify({
-         "username_login": (document.getElementById('username_login').value),
-         "email_login": (document.getElementById('email_login').value),
-         "password_login": document.getElementById('password_login').value
-     })
-
-     console.log(data)
-
-     $.ajax({
-         type: "POST",
-         url: "sign_in",
-         data: data,
-         contentType: 'application/json',
-         dataType: 'json',
-         error: function () {
-             console.log("error");
-         },
-         success: function () {
-             console.log("success");
-         }
-     });
-
  }
 
 

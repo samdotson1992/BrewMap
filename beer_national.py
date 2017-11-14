@@ -10,9 +10,18 @@ cur=conn.cursor()
 class StringGenerator(object):
     @cherrypy.expose
     @cherrypy.tools.json_in() 
-    def sign_in(self, urlParam1=None):
-        json_sign_in = cherrypy.request.json
+    def users(self, typ=""):
+        users = cherrypy.request.json
         print(cherrypy.request.json)
+        if typ=="signUp":
+             try:
+                cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(json_sign_up['username_signup'],json_sign_up['email_signup'],json_sign_up['password_signup'],json_sign_up['re_password_signup']))
+                conn.commit()
+                cur.execute("SELECT * FROM user_sign_up")
+                print(cur.fetchall())
+            except:
+                print("Error in inserting sign up data")
+        elif typ=="signIn"        
         try:
             cur.execute("INSERT INTO sign_in (username_login, email_login, password_login) VALUES (%s,%s,%s)",(json_sign_in['username_login'],json_sign_in['email_login'],json_sign_in['password_login']))
             conn.commit()
@@ -20,19 +29,21 @@ class StringGenerator(object):
             print(cur.fetchall())
         except:
             print("Error in inserting sign in data")
+        else:
+            print('Something with wrong with the signUp/sigIn')
     
-    @cherrypy.expose
-    @cherrypy.tools.json_in() 
-    def sign_up(self, urlParam1=None):
-        json_sign_up = cherrypy.request.json
-        print(cherrypy.request.json)
-        try:
-            cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(json_sign_up['username_signup'],json_sign_up['email_signup'],json_sign_up['password_signup'],json_sign_up['re_password_signup']))
-            conn.commit()
-            cur.execute("SELECT * FROM user_sign_up")
-            print(cur.fetchall())
-        except:
-            print("Error in inserting sign up data")
+    #@cherrypy.expose
+    #@cherrypy.tools.json_in() 
+    #def sign_up(self, urlParam1=None):
+     #   json_sign_up = cherrypy.request.json
+      #  print(cherrypy.request.json)
+       # try:
+        #    cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(json_sign_up['username_signup'],json_sign_up['email_signup'],json_sign_up['password_signup'],json_sign_up['re_password_signup']))
+         #   conn.commit()
+          #  cur.execute("SELECT * FROM user_sign_up")
+           # print(cur.fetchall())
+    #    except:
+     #       print("Error in inserting sign up data")
 
     #@cherrypy.expose
     #@cherrypy.tools.json_out()

@@ -13,10 +13,7 @@ function openTab(evt, TabName) {
  }
 
  function users(typ) {
-     
-     
-     console.log("users is running")
-     
+     console.log("users is running")    
      switch (typ) {
     case 'signIn':
        var data = JSON.stringify({
@@ -27,22 +24,16 @@ function openTab(evt, TabName) {
        console.log(data)
         break;
     case 'signUp':
-         var obj = {
+         var data = JSON.stringify({
          'username_signup': document.getElementById('username_signup').value,
          'email_signup': document.getElementById('email_signup').value,
          'password_signup': document.getElementById('password_signup').value,
          're_password_signup': document.getElementById('re_password_signup').value
-     }
-            if(obj["3"] != obj["2"]) {
-         window.alert("Passwords don't match!")
-     } else {
-         var data = JSON.stringify(obj)
-         console.log(data)}
+     })
         break;
     default:
         window.alert("He's dead Jim")
 }
-
      $.ajax({
          type: "POST",
          url: "users/"+typ,

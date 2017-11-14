@@ -27,8 +27,8 @@ class StringGenerator(object):
                 conn.commit()
                 cur.execute("SELECT * FROM sign_in")
                 print(cur.fetchall())
-        except:
-            print("Error in inserting sign in data")
+            except:
+                print("Error in inserting sign in data")
         else:
             print('Something with wrong with the signUp/sigIn')
     

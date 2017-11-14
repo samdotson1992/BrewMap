@@ -46,7 +46,7 @@ function openTab(evt, TabName) {
 
      $.ajax({
          type: "POST",
-         url: "users",
+         url: "users/typ="+typ,
          data: data,
          contentType: 'application/json',
          dataType: 'json',

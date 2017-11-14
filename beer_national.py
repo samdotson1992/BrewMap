@@ -21,12 +21,12 @@ class StringGenerator(object):
                 print(cur.fetchall())
             except:
                 print("Error in inserting sign up data")
-        elif typ=="signIn"        
-        try:
-            cur.execute("INSERT INTO sign_in (username_login, email_login, password_login) VALUES (%s,%s,%s)",(json_sign_in['username_login'],json_sign_in['email_login'],json_sign_in['password_login']))
-            conn.commit()
-            cur.execute("SELECT * FROM sign_in")
-            print(cur.fetchall())
+        elif typ=="signIn":        
+            try:
+                cur.execute("INSERT INTO sign_in (username_login, email_login, password_login) VALUES (%s,%s,%s)",(json_sign_in['username_login'],json_sign_in['email_login'],json_sign_in['password_login']))
+                conn.commit()
+                cur.execute("SELECT * FROM sign_in")
+                print(cur.fetchall())
         except:
             print("Error in inserting sign in data")
         else:

@@ -15,7 +15,7 @@ class StringGenerator(object):
         print(cherrypy.request.json)
         if typ=="signUp":
             try:
-                cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(json_sign_up['username_signup'],json_sign_up['email_signup'],json_sign_up['password_signup'],json_sign_up['re_password_signup']))
+                cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(users['username_signup'],users['email_signup'],users['password_signup'],users['re_password_signup']))
                 conn.commit()
                 cur.execute("SELECT * FROM user_sign_up")
                 print(cur.fetchall())
@@ -23,7 +23,7 @@ class StringGenerator(object):
                 print("Error in inserting sign up data")
         elif typ=="signIn":        
             try:
-                cur.execute("INSERT INTO sign_in (username_login, email_login, password_login) VALUES (%s,%s,%s)",(json_sign_in['username_login'],json_sign_in['email_login'],json_sign_in['password_login']))
+                cur.execute("INSERT INTO sign_in (username_login, email_login, password_login) VALUES (%s,%s,%s)",(users['username_login'],users['email_login'],users['password_login']))
                 conn.commit()
                 cur.execute("SELECT * FROM sign_in")
                 print(cur.fetchall())

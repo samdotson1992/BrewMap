@@ -1,48 +1,4 @@
-L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtZG90c29uMTk5MiIsImEiOiJRc2VOSXpvIn0.Bhg-j6XJ2sQGI48SjKOuYg';
- var map = L.mapbox.map('map', 'mapbox.streets').setView([38.03785, -84.850783], 3);
-
-
- var sidebar = L.control.sidebar('sidebar', {
-     position: 'right'
- }).addTo(map);
-
-
- map.addControl(L.control.locate({
-     locateOptions: {
-         maxZoom: 10
-     }
-
- }));
-
- var beer = omnivore.csv("/static/datasets/Breweries.csv", null, L.mapbox.featureLayer()).on("ready", function () {
-     var markers = L.markerClusterGroup({
-         chunkedLoading: true
-     });
-
-
-     beer.on('click', function (a) {
-         console.log(a.layer.feature.properties.name);
-         var content = a.layer.feature.properties.name;
-
-     })
-
-
-     markers.addLayer(beer);
-     markers.bindPopup(function (layer) {
-         console.log(layer.feature.properties.name)
-         return layer.feature.properties.name
-     }).addTo(map);
-
-
- });
-
-
- L.easyButton('fa-home', function () {
-     map.setView([38.03785, -84.850783], 4);
- }).addTo(map);
-
-
- function openTab(evt, TabName) {
+function openTab(evt, TabName) {
      var i, x, tablinks;
      x = document.getElementsByClassName("Tab");
      for (i = 0; i < x.length; i++) {

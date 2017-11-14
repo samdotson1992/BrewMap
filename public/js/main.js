@@ -14,6 +14,7 @@ function openTab(evt, TabName) {
 
 
  function signUp() {
+     console.log("sign up is running")
 
      var obj = {
          'username_signup': document.getElementById('username_signup').value,
@@ -27,10 +28,7 @@ function openTab(evt, TabName) {
          alert("Passwords don't match!")
      } else {
          var data = JSON.stringify(obj)
-         return data
          console.log(data)
-     }
-
 
      $.ajax({
          type: "POST",
@@ -46,7 +44,7 @@ function openTab(evt, TabName) {
          }
      });
 
- }
+ }}
 
  function signIn() {
      var data = JSON.stringify({

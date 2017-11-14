@@ -20,8 +20,8 @@ class StringGenerator(object):
         if typ=="signUp":
             try:
                 cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(users['username_signup'],users['email_signup'],users['password_signup'],users['re_password_signup']))
-                conn.commit()
                 cur.execute("SELECT * FROM user_sign_up WHERE username_signup="+users['username_signup']+ "OR email_signup="+users['email_signup'])
+                conn.commit()
                 if cur.fetchone()=="":
                     print("new user")
                 else:

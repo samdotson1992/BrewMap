@@ -24,7 +24,8 @@ function openTab(evt, TabName) {
          'username_signup': document.getElementById('username_login').value,
          'email_signup': document.getElementById('email_login').value,
          'password_signup': document.getElementById('password_login').value,
-       })      
+       })
+       console.log(data)
         break;
     case 'signUp':
          var obj = {
@@ -38,7 +39,6 @@ function openTab(evt, TabName) {
      } else {
          var data = JSON.stringify(obj)
          console.log(data)}
-         
         break;
     default:
         window.alert("He's dead Jim")

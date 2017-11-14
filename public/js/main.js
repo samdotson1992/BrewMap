@@ -16,9 +16,9 @@ function openTab(evt, TabName) {
      console.log("users is running")    
      if (typ=='signIn') {
        var data = JSON.stringify({
-         'username_signup': document.getElementById('username_login').value,
-         'email_signup': document.getElementById('email_login').value,
-         'password_signup': document.getElementById('password_login').value,
+         'username_login': document.getElementById('username_login').value,
+         'email_login': document.getElementById('email_login').value,
+         'password_login': document.getElementById('password_login').value
        })
        console.log(data)
     }

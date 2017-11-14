@@ -12,7 +12,6 @@ function openTab(evt, TabName) {
      evt.currentTarget.className += " w3-red";
  }
 
-
  function users(typ) {
      
      
@@ -46,7 +45,7 @@ function openTab(evt, TabName) {
 
      $.ajax({
          type: "POST",
-         url: "users/typ="+typ,
+         url: "users/"+typ,
          data: data,
          contentType: 'application/json',
          dataType: 'json',

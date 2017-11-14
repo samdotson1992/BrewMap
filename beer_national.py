@@ -14,7 +14,7 @@ class StringGenerator(object):
         users = cherrypy.request.json
         print(cherrypy.request.json)
         if typ=="signUp":
-             try:
+            try:
                 cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(json_sign_up['username_signup'],json_sign_up['email_signup'],json_sign_up['password_signup'],json_sign_up['re_password_signup']))
                 conn.commit()
                 cur.execute("SELECT * FROM user_sign_up")

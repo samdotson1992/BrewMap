@@ -27,7 +27,7 @@ class StringGenerator(object):
                 else:
                     print("user already exists")   
                 print(cur.fetchall())
-            except:
+            except (RuntimeError, TypeError, NameError):
                 print("Error in inserting sign up data")
         elif typ=="signIn":        
             try:
@@ -35,7 +35,7 @@ class StringGenerator(object):
                 conn.commit()
                 cur.execute("SELECT * FROM sign_in")
                 print(cur.fetchall())
-            except:
+            except (RuntimeError, TypeError, NameError):
                 print("Error in inserting sign in data")
         else:
             print('Something with wrong with the signUp/sigIn')

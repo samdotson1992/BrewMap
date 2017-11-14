@@ -14,24 +14,23 @@ function openTab(evt, TabName) {
 
  function users(typ) {
      console.log("users is running")    
-     switch (typ) {
-    case 'signIn':
+     if (typ=='signIn') {
        var data = JSON.stringify({
          'username_signup': document.getElementById('username_login').value,
          'email_signup': document.getElementById('email_login').value,
          'password_signup': document.getElementById('password_login').value,
        })
        console.log(data)
-        break;
-    case 'signUp':
+    }
+    else if(typ='signUp'){
          var data = JSON.stringify({
          'username_signup': document.getElementById('username_signup').value,
          'email_signup': document.getElementById('email_signup').value,
          'password_signup': document.getElementById('password_signup').value,
          're_password_signup': document.getElementById('re_password_signup').value
      })
-        break;
-    default:
+    }
+    else {
         window.alert("He's dead Jim")
 }
      $.ajax({

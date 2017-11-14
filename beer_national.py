@@ -13,6 +13,10 @@ class StringGenerator(object):
     def users(self, typ=""):
         users = cherrypy.request.json
         print(cherrypy.request.json)
+        try: 
+            print(typ)
+        except:
+            print("What typ?")    
         if typ=="signUp":
             try:
                 cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(users['username_signup'],users['email_signup'],users['password_signup'],users['re_password_signup']))

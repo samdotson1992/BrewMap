@@ -20,10 +20,10 @@ class StringGenerator(object):
             print("What typ?")    
         if typ=="signUp":
             try:
-                cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup) VALUES (%s,%s,%s)",(users['username_signup'],users['email_signup'],hashlib.md5((users['password_signup']).encode('utf-8')).hexdigest()))
-                #cur.execute("SELECT * FROM user_sign_up WHERE username_signup="+users['username_signup']+ "OR email_signup="+users['email_signup'])
+                cur.execute("INSERT INTO users_table (username, email, password_signup) VALUES (%s,%s,%s)",(users['username'],users['email'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
+                cur.execute("SELECT * FROM users_table WHERE username="+users['username']+ "OR email="+users['email'])
                 conn.commit()
-                if cur.fetchone()=="":
+                if cur.fetchone()==None:
                     print("new user")
                 else:
                     print("user already exists")   
@@ -32,7 +32,7 @@ class StringGenerator(object):
                 print("Error in inserting sign up data")
         elif typ=="signIn":        
             try:
-                cur.execute("INSERT INTO sign_in (username_login, email_login, password_login) VALUES (%s,%s,%s)",(users['username_login'],users['email_login'], hashlib.md5((users['password_login']).encode('utf-8')).hexdigest()))
+                cur.execute("INSERT INTO users_table (email, passwrd) VALUES (%s,%s)",(users['email'], hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
                 conn.commit()
                 cur.execute("SELECT * FROM sign_in")
                 print(cur.fetchall())
@@ -40,42 +40,6 @@ class StringGenerator(object):
                 print("Error in inserting sign in data")
         else:
             print('Something with wrong with the signUp/sigIn')
-    
-    #@cherrypy.expose
-    #@cherrypy.tools.json_in() 
-    #def sign_up(self, urlParam1=None):
-     #   json_sign_up = cherrypy.request.json
-      #  print(cherrypy.request.json)
-       # try:
-        #    cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(json_sign_up['username_signup'],json_sign_up['email_signup'],json_sign_up['password_signup'],json_sign_up['re_password_signup']))
-         #   conn.commit()
-          #  cur.execute("SELECT * FROM user_sign_up")
-           # print(cur.fetchall())
-    #    except:
-     #       print("Error in inserting sign up data")
-
-    #@cherrypy.expose
-    #@cherrypy.tools.json_out()
-    #def user_profile(self, urlParam1=None):
-    
-
-    #@cherrypy.expose
-    #@cherrypy.tools.json_in()
-    #@cherrypy.tools.json_out()
-    #def rank(self, urlParam1=None):
-        #try:
-            #cur.execute("SELECT * FROM breweries limit 20")
-            #print(cur.fetchall())
-            #data = cur.fetchall()
-            #print(data)
-            #obj=[]
-            #for i in data:
-            #	obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
-            #print(json.dumps(obj))
-            #return json.dumps(obj)
-        #except:
-            #print("Error with GET")
-            #conn.rollback()
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
@@ -136,8 +100,7 @@ def cleanup_database():
     on server shutdown.
     """
     try:
-        cur.execute("DROP TABLE sign_in")
-        cur.execute("DROP TABLE user_sign_up")
+        cur.execute("DROP TABLE users_table")
         conn.commit()
     except:
         print("Error in dropping tables")
@@ -145,8 +108,7 @@ def cleanup_database():
 
 def setup_database():
     try:
-        cur.execute("CREATE TABLE sign_in (username_login varchar(255), email_login varchar(255), password_login varchar(255))")
-        cur.execute("CREATE TABLE user_sign_up (username_signup varchar(255), email_signup varchar(255), password_signup varchar(255))")
+        cur.execute("CREATE TABLE users_table (username varchar(255), email varchar(255), passwrd varchar(255))")
         conn.commit()
         
     except:

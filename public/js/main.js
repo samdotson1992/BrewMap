@@ -16,23 +16,23 @@ function openTab(evt, TabName) {
      console.log("users is running")    
      if (typ=='signIn') {
        var data = JSON.stringify({
-         'username_login': document.getElementById('username_login').value,
-         'email_login': document.getElementById('email_login').value,
-         'password_login': document.getElementById('password_login').value
+         'username': document.getElementById('username_login').value,
+         'email': document.getElementById('email_login').value,
+         'passwrd': document.getElementById('password_login').value
        })
        console.log(data)
     }
     else if(typ='signUp'){
-         var data = {
-         'username_signup': document.getElementById('username_signup').value,
-         'email_signup': document.getElementById('email_signup').value,
-         'password_signup': document.getElementById('password_signup').value,
+         var obj = {
+         'username': document.getElementById('username_signup').value,
+         'email': document.getElementById('email_signup').value,
+         'passwrd': document.getElementById('password_signup').value,
          're_password_signup': document.getElementById('re_password_signup').value
      }
-    if (data.re_password_signup===data.password_signup){
+    if (obj.re_password_signup===obj.passwrd){
         window.alert("Passwords don't match")
     }
-    else {data= JSON.stringify(data);}
+    else {data= JSON.stringify({"username":obj.username,"email":obj.email,"passwrd":obj.passwrd});}
  
     }
     else {

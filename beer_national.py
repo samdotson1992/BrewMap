@@ -146,7 +146,7 @@ def cleanup_database():
 def setup_database():
     try:
         cur.execute("CREATE TABLE sign_in (username_login varchar(255), email_login varchar(255), password_login varchar(255))")
-        cur.execute("CREATE TABLE user_sign_up (username_signup varchar(255), email_signup varchar(255), password_signup varchar(255)")
+        cur.execute("CREATE TABLE user_sign_up (username_signup varchar(255), email_signup varchar(255), password_signup varchar(255))")
         conn.commit()
         
     except:

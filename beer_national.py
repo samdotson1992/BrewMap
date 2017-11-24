@@ -82,6 +82,7 @@ class StringGenerator(object):
     def get_data(self,param=""):
         print(param)
         print(cherrypy.session.id)
+        n=15;
         try:
             #param = cherrypy.request.json
             print(param)
@@ -92,7 +93,8 @@ class StringGenerator(object):
             elif param=='sort_down':
                 cur.execute("SELECT * FROM breweries ORDER BY name DESC limit 15;")
             elif param=='next':
-                cur.execute("SELECT * FROM breweries limit 15;")
+                n+=15
+                cur.execute("SELECT * FROM breweries limit n;")
             else:
                 cur.execute("SELECT * FROM breweries limit 15;")
             data = cur.fetchall()

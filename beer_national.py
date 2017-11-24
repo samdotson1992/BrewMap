@@ -34,7 +34,7 @@ class StringGenerator(object):
             try:
                 cur.execute("INSERT INTO users_table (email, passwrd) VALUES (%s,%s)",(users['email'], hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
                 conn.commit()
-                cur.execute("SELECT * FROM sign_in")
+                cur.execute("SELECT * FROM user_table")
                 print(cur.fetchall())
             except (RuntimeError, TypeError, NameError):
                 print("Error in inserting sign in data")

@@ -39,7 +39,6 @@ function openTab(evt, TabName) {
         window.alert("He's dead Jim")
 }
 
-
      $.ajax({
          type: "POST",
          url: "users/"+typ,
@@ -54,47 +53,3 @@ function openTab(evt, TabName) {
          }
      });
  }
-
- /*
- function processFormData(){
-                   // code for IE7+, Firefox, Chrome, Opera, Safari
-                   if(window.XMLHttpRequest)
-                       xmlhttp=new XMLHttpRequest();
-                   else// code for IE5
-                       xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
-
-                   xmlhttp.open("POST","/observe", true);
-                   var json_list = JSON.stringify([(document.getElementById('username_login').value),(document.getElementById('email_login').value),document.getElementById('password_login').value]);
-                   xmlhttp.setRequestHeader('Content-Type', 'application/json');
-                   xmlhttp.send(json_list);
-                   }
-
-         */
-
-
- /*
- function processFormData() {
-     var list = [(document.getElementById('username_login').value), (document.getElementById('email_login').value), document.getElementById('password_login').value]
-     json_list = JSON.stringify(list)
-     console.log(json_list)
-     console.log("bananas!")
-
- */
-
- /*
-
- var xhr = new XMLHttpRequest();
- var url = '/join';
-
- var data= JSON.stringify({id: '200'});
- xhr.responseType='json'
- xhr.onreadystatechange=function(){
-   if (xhr.readyState===XMLHttpRequest.DONE) { console.log(xhr.response)};
-
- };
-
- xhr.open('POST',url)
- xhr.send(json_list)
- };
-
- */

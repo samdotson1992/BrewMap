@@ -50,53 +50,7 @@
         
         
     <script>
-        function get_data() {
-            $.ajax({
-                url: "rank",
-                type: 'GET',
-                dataType: 'json',
-                success(response) {
-                    console.log(response);
-                    var data = JSON.parse(response);
-                    console.log(data);
-                    list = "<tr><th>Name</th><th> Latitude</th><th>Longitude</th>";
-                    for (i in data) {
-                        list += "<tr><th>" + (data[i].name) + "</th><th>" + (data[i].latitude) + "</th> <th>" + (data[i].longitude) + "</th></tr>"
-                    }
-                    document.getElementById("data").innerHTML = list;
-                },
-                error(jqXHR, status, errorThrown) {
-                    console.log(jqXHR);
-                }
-            });
-        }
-
-
-        function signIn() {
-            var data = JSON.stringify({
-                "username_login": (document.getElementById('username_login').value),
-                "email_login": (document.getElementById('email_login').value),
-                "password_login": document.getElementById('password_login').value
-            })
-
-            console.log(data)
-
-            $.ajax({
-                type: "POST",
-                url: "sign_in",
-                data: data,
-                contentType: 'application/json',
-                dataType: 'json',
-                error: function() {
-                    console.log("error");
-                },
-                success: function() {
-                    console.log("success");
-                }
-            });
-
-        }
-
+      
     </script>
 </body>
 

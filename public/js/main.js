@@ -29,7 +29,7 @@ function openTab(evt, TabName) {
          'passwrd': document.getElementById('password_signup').value,
          're_password_signup': document.getElementById('re_password_signup').value
      }
-    if (obj.re_password_signup===obj.passwrd){
+    if (obj.re_password_signup!==obj.passwrd){
         window.alert("Passwords don't match")
     }
     else {data= JSON.stringify({"username":obj.username,"email":obj.email,"passwrd":obj.passwrd});}

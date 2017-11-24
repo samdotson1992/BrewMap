@@ -23,16 +23,23 @@ function openTab(evt, TabName) {
        console.log(data)
     }
     else if(typ='signUp'){
-         var data = JSON.stringify({
+         var data = {
          'username_signup': document.getElementById('username_signup').value,
          'email_signup': document.getElementById('email_signup').value,
          'password_signup': document.getElementById('password_signup').value,
          're_password_signup': document.getElementById('re_password_signup').value
-     })
+     }
+    if (data.re_password_signup===data.password_signup){
+        window.alert("Passwords don't match")
+    }
+    else {data= JSON.stringify(data);}
+ 
     }
     else {
         window.alert("He's dead Jim")
 }
+
+
      $.ajax({
          type: "POST",
          url: "users/"+typ,

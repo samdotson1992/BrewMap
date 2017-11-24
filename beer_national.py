@@ -3,6 +3,7 @@ import os, os.path
 import string
 import json
 import psycopg2
+import hashlib
 
 conn = psycopg2.connect("dbname=samsam  user=samsam")
 cur=conn.cursor()
@@ -19,7 +20,7 @@ class StringGenerator(object):
             print("What typ?")    
         if typ=="signUp":
             try:
-                cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(users['username_signup'],users['email_signup'],users['password_signup'],users['re_password_signup']))
+                cur.execute("INSERT INTO user_sign_up (username_signup, email_signup, password_signup, re_password_signup) VALUES (%s,%s,%s,%s)",(users['username_signup'],users['email_signup'],hashlib.md5((users['password_signup']).encode('utf-8')).hexdigest()))
                 cur.execute("SELECT * FROM user_sign_up WHERE username_signup="+users['username_signup']+ "OR email_signup="+users['email_signup'])
                 conn.commit()
                 if cur.fetchone()=="":
@@ -31,7 +32,7 @@ class StringGenerator(object):
                 print("Error in inserting sign up data")
         elif typ=="signIn":        
             try:
-                cur.execute("INSERT INTO sign_in (username_login, email_login, password_login) VALUES (%s,%s,%s)",(users['username_login'],users['email_login'],users['password_login']))
+                cur.execute("INSERT INTO sign_in (username_login, email_login, password_login) VALUES (%s,%s,%s)",(users['username_login'],users['email_login'], hashlib.md5((users['password_login']).encode('utf-8')).hexdigest()))
                 conn.commit()
                 cur.execute("SELECT * FROM sign_in")
                 print(cur.fetchall())
@@ -80,11 +81,9 @@ class StringGenerator(object):
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def get_data(self,param=""):
-        print(param)
         print(cherrypy.session.id)
         n=15;
         try:
-            #param = cherrypy.request.json
             print(param)
             if param== "":
                 cur.execute("SELECT * FROM breweries limit 15;")
@@ -99,24 +98,17 @@ class StringGenerator(object):
                 cur.execute("SELECT * FROM breweries limit 15;")
             data = cur.fetchall()
             print(data)
-            obj=[]
-            for i in data:
-                obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
-            print(json.dumps(obj))
-            return json.dumps(obj)
+
         except:
             cur.execute("SELECT * FROM breweries limit 15")
             #print(cur.fetchall())
             data = cur.fetchall()
             print(data)
-            obj=[]
-            for i in data:
-                obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
-            print(json.dumps(obj))
-            return json.dumps(obj)
-
-            #print("Error with GET")
-            #conn.rollback()
+        obj=[]
+        for i in data:
+            obj.append({"longitude":i[0], "latitude": i[1],"name":i[2]})
+        print(json.dumps(obj))
+        return json.dumps(obj)
 
     @cherrypy.expose
     def index(self):
@@ -154,7 +146,7 @@ def cleanup_database():
 def setup_database():
     try:
         cur.execute("CREATE TABLE sign_in (username_login varchar(255), email_login varchar(255), password_login varchar(255))")
-        cur.execute("CREATE TABLE user_sign_up (username_signup varchar(255), email_signup varchar(255), password_signup varchar(255), re_password_signup varchar(255))")
+        cur.execute("CREATE TABLE user_sign_up (username_signup varchar(255), email_signup varchar(255), password_signup varchar(255)")
         conn.commit()
         
     except:

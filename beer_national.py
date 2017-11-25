@@ -25,16 +25,28 @@ class StringGenerator(object):
                 if cur.fetchone()==None:
                     print("new user")
                     cur.execute("INSERT INTO users_table (username, email, passwrd) VALUES (%s,%s,%s)",(users['username'],users['email'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest(),))
+                    user_data=cur.fetchall()
+                    print(user_data)
+                    user_obj=[]
+                    for i in user_data:
+                        user_obj.append({"username":i[0]})
+                        print(json.dumps(obj))
+                        return json.dumps(obj)
                 else:
                     print("user already exists")   
-                print(cur.fetchall())
             except (RuntimeError, TypeError, NameError):
                 print("Error in inserting sign up data")
         elif typ=="signIn":        
             try:
-                cur.execute("SELECT * FROM users_table WHERE username=" users['username'] +"AND passwrd= "+ hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
+                cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_everything FROM users_table WHERE username=" + users['username'] +"AND passwrd= "+ hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
                 conn.commit()
-                print(cur.fetchone())
+                user_data = cur.fetchall()
+                print(user_data)
+                user_obj=[]
+                for i in user_data:
+                    user_obj.append({ "username":i[0], "likes_hop"i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_everything": i[6]})
+                print(json.dumps(obj))
+                return json.dumps(obj)
             except (RuntimeError, TypeError, NameError):
                 print("Error in inserting sign in data")
         else:

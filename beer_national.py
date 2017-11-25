@@ -44,7 +44,7 @@ class StringGenerator(object):
                 print(user_data)
                 user_obj=[]
                 for i in user_data:
-                    user_obj.append({ "username":i[0], "likes_hop"i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_everything": i[6]})
+                    user_obj.append({ "username":i[0], "likes_hop":i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_everything": i[6]})
                 print(json.dumps(obj))
                 return json.dumps(obj)
             except (RuntimeError, TypeError, NameError):

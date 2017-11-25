@@ -38,7 +38,7 @@ class StringGenerator(object):
                 print("Error in inserting sign up data")
         elif typ=="signIn":        
             try:
-                cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_everything FROM users_table WHERE username=" + users['username'] +"AND passwrd= "+ hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
+                cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_everything FROM users_table WHERE username=" + users['username'] +"AND passwrd= "+ hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest())
                 conn.commit()
                 user_data = cur.fetchall()
                 print(user_data)

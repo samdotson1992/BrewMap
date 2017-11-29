@@ -24,13 +24,9 @@ class StringGenerator(object):
             if cur.fetchone()==None:
                 print("new user")
                 cur.execute("INSERT INTO users_table (username, email, passwrd) VALUES (%s,%s,%s)",(users['username'],users['email'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest(),))
-                user_data=cur.fetchall()
-                print(user_data)
-                user_obj=[]
-                for i in user_data:
-                    user_obj.append({"username":i[0]})
-                    print(json.dumps(obj))
-                    return json.dumps(obj)
+                newUser =json.dumps({'username':users['username']})
+                return newUser
+                print newUser
             else:
                 return json.dumps({'error':"User_already_exists"})   
         elif typ=="signIn":        

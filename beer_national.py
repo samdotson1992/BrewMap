@@ -40,7 +40,7 @@ class StringGenerator(object):
                 print(json.dumps(obj))
                 return json.dumps(obj)
             except (RuntimeError, TypeError, NameError):
-                print("Error in inserting sign in data")
+                print(RuntimeError,TypeError,NameError)
         else:
             print('Something with wrong with the signUp/sigIn')
 

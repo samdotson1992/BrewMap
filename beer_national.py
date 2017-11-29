@@ -21,7 +21,7 @@ class StringGenerator(object):
             print("What typ?")    
         if typ=="signUp":
             try:
-                cur.execute("SELECT * FROM users_table WHERE username= "+str(users['username'])+ " OR email="+str(users['email']))
+                cur.execute("SELECT EXISTS (SELECT * FROM users_table WHERE username= "+str(users['username'])+ " OR email="+str(users['email']) +")"+)
                 #cur.execute("SELECT * FROM user_test_table WHERE username = "+ "'bob'" + " OR email ="+ "'bob@bobmail.com'")
                 if cur.fetchone()==None:
                     print("new user")

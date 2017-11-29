@@ -7,6 +7,7 @@ import hashlib
 
 conn = psycopg2.connect("dbname=samsam  user=samsam")
 cur=conn.cursor()
+conn.autocommit= True 
     
 class StringGenerator(object):
     @cherrypy.expose
@@ -22,7 +23,6 @@ class StringGenerator(object):
             try:
                 cur.execute("SELECT * FROM users_table WHERE username= "+str(users['username'])+ " OR email="+str(users['email']))
                 #cur.execute("SELECT * FROM user_test_table WHERE username = "+ "'bob'" + " OR email ="+ "'bob@bobmail.com'")
-                conn.commit()
                 if cur.fetchone()==None:
                     print("new user")
                     cur.execute("INSERT INTO users_table (username, email, passwrd) VALUES (%s,%s,%s)",(users['username'],users['email'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest(),))
@@ -37,11 +37,9 @@ class StringGenerator(object):
                     print("user already exists")   
             except (RuntimeError, TypeError, NameError):
                 print("Error in inserting sign up data")
-                cur.rollback()
         elif typ=="signIn":        
             try:
                 cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_everything FROM users_table WHERE username=" + users['username'] +"AND passwrd= "+ hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest())
-                conn.commit()
                 user_data = cur.fetchall()
                 print(user_data)
                 user_obj=[]
@@ -113,19 +111,15 @@ def cleanup_database():
     """
     try:
         cur.execute("DROP TABLE users_table")
-        conn.commit()
     except:
         print("Error in dropping tables")
-        conn.rollback()
 
 def setup_database():
     try:
         cur.execute("CREATE TABLE users_table (username varchar(255), email varchar(255), passwrd varchar(255), likes_hop BOOLEAN, likes_dark BOOLEAN, likes_funky BOOLEAN, likes_weird BOOLEAN, no_like BOOLEAN, likes_every BOOLEAN)")
-        conn.commit()
         
     except:
         print("Error in creating tables")
-        conn.rollback()
 
 if __name__ == '__main__':
     cherrypy.config.update({'server.socket_host': '0.0.0.0',

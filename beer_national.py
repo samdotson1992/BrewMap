@@ -36,8 +36,8 @@ class StringGenerator(object):
             user_obj=[]
             for i in user_data:
                 user_obj.append({"username":i[0], "likes_hop":i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_every": i[6]})
-            print(json.dumps(obj))
-            return json.dumps(obj)
+            print(json.dumps(user_obj))
+            return json.dumps(user_obj)
         else:
             print('Something with wrong with the signUp/sigIn')
 

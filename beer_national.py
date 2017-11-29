@@ -20,7 +20,8 @@ class StringGenerator(object):
             print("What typ?")    
         if typ=="signUp":
             try:
-                cur.execute("SELECT * FROM users_table WHERE username= "+users['username']+ " OR email="+users['email'])
+                cur.execute("SELECT * FROM users_table WHERE username= "+str(users['username'])+ " OR email="+str(users['email']))
+                #cur.execute("SELECT * FROM user_test_table WHERE username = "+ "'bob'" + " OR email ="+ "'bob@bobmail.com'")
                 conn.commit()
                 if cur.fetchone()==None:
                     print("new user")
@@ -44,7 +45,7 @@ class StringGenerator(object):
                 print(user_data)
                 user_obj=[]
                 for i in user_data:
-                    user_obj.append({ "username":i[0], "likes_hop":i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_everything": i[6]})
+                    user_obj.append({"username":i[0], "likes_hop":i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_everything": i[6]})
                 print(json.dumps(obj))
                 return json.dumps(obj)
             except (RuntimeError, TypeError, NameError):
@@ -76,7 +77,6 @@ class StringGenerator(object):
 
         except:
             cur.execute("SELECT * FROM breweries limit 15")
-            #print(cur.fetchall())
             data = cur.fetchall()
             print(data)
         obj=[]
@@ -145,3 +145,5 @@ if __name__ == '__main__':
     cherrypy.engine.subscribe('start', setup_database)
     cherrypy.engine.subscribe('stop', cleanup_database)
     cherrypy.quickstart(StringGenerator(), '/', conf)
+
+

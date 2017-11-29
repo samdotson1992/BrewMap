@@ -32,7 +32,7 @@ class StringGenerator(object):
                     print(json.dumps(obj))
                     return json.dumps(obj)
             else:
-                return json.dumps(["error":"User_already_exists"])   
+                return json.dumps({'error':"User_already_exists"})   
         elif typ=="signIn":        
             try:
                 cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_every FROM users_table WHERE username= %s AND passwrd= %s" ,(users['username'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))

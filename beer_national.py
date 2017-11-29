@@ -19,10 +19,9 @@ class StringGenerator(object):
             print(typ)
         except:
             print("What typ?")    
-        if typ=="signUp":
-            try:
-                cur.execute("(SELECT * FROM users_table WHERE username= %s OR email= %s)",(str(users['username']),str(users['email'],)))
-            except:
+        if typ=="signUp": 
+            cur.execute("(SELECT * FROM users_table WHERE username= %s OR email= %s)",(str(users['username']),str(users['email'],)))
+            if cur.fetchone()=None:
                 print("new user")
                 cur.execute("INSERT INTO users_table (username, email, passwrd) VALUES (%s,%s,%s)",(users['username'],users['email'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest(),))
                 user_data=cur.fetchall()
@@ -32,6 +31,8 @@ class StringGenerator(object):
                     user_obj.append({"username":i[0]})
                     print(json.dumps(obj))
                     return json.dumps(obj)
+            else:
+                return json.dumps(["error":"User_already_exists"])   
         elif typ=="signIn":        
             try:
                 cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_every FROM users_table WHERE username= %s AND passwrd= %s" ,(users['username'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))

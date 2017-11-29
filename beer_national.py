@@ -37,6 +37,7 @@ class StringGenerator(object):
                     print("user already exists")   
             except (RuntimeError, TypeError, NameError):
                 print("Error in inserting sign up data")
+                cur.rollback()
         elif typ=="signIn":        
             try:
                 cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_everything FROM users_table WHERE username=" + users['username'] +"AND passwrd= "+ hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest())

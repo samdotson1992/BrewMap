@@ -21,7 +21,7 @@ class StringGenerator(object):
             print("What typ?")    
         if typ=="signUp":
             try:
-                cur.execute("SELECT EXISTS (SELECT * FROM users_table WHERE username= %s OR email= %s)",(str(users['username']),str(users['email'],)))
+                cur.execute("(SELECT * FROM users_table WHERE username= %s OR email= %s)",(str(users['username']),str(users['email'],)))
             except:
                 print("new user")
                 cur.execute("INSERT INTO users_table (username, email, passwrd) VALUES (%s,%s,%s)",(users['username'],users['email'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest(),))

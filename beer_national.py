@@ -22,21 +22,16 @@ class StringGenerator(object):
         if typ=="signUp":
             try:
                 cur.execute("SELECT EXISTS (SELECT * FROM users_table WHERE username= "+str(users['username'])+ " OR email="+str(users['email']) +")")
-                #cur.execute("SELECT * FROM user_test_table WHERE username = "+ "'bob'" + " OR email ="+ "'bob@bobmail.com'")
-                if cur.fetchone()==None:
-                    print("new user")
-                    cur.execute("INSERT INTO users_table (username, email, passwrd) VALUES (%s,%s,%s)",(users['username'],users['email'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest(),))
-                    user_data=cur.fetchall()
-                    print(user_data)
-                    user_obj=[]
-                    for i in user_data:
-                        user_obj.append({"username":i[0]})
-                        print(json.dumps(obj))
-                        return json.dumps(obj)
-                else:
-                    print("user already exists")   
-            except (RuntimeError, TypeError, NameError):
-                print("Error in inserting sign up data")
+            except:
+                print("new user")
+                cur.execute("INSERT INTO users_table (username, email, passwrd) VALUES (%s,%s,%s)",(users['username'],users['email'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest(),))
+                user_data=cur.fetchall()
+                print(user_data)
+                user_obj=[]
+                for i in user_data:
+                    user_obj.append({"username":i[0]})
+                    print(json.dumps(obj))
+                    return json.dumps(obj)
         elif typ=="signIn":        
             try:
                 cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_everything FROM users_table WHERE username=" + users['username'] +"AND passwrd= "+ hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest())

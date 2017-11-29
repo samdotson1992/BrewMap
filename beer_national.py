@@ -34,12 +34,12 @@ class StringGenerator(object):
                     return json.dumps(obj)
         elif typ=="signIn":        
             try:
-                cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_everything FROM users_table WHERE username= %s AND passwrd= %s" ,(users['username'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
+                cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_every FROM users_table WHERE username= %s AND passwrd= %s" ,(users['username'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
                 user_data = cur.fetchall()
                 print(user_data)
                 user_obj=[]
                 for i in user_data:
-                    user_obj.append({"username":i[0], "likes_hop":i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_everything": i[6]})
+                    user_obj.append({"username":i[0], "likes_hop":i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_every": i[6]})
                 print(json.dumps(obj))
                 return json.dumps(obj)
             except (RuntimeError, TypeError, NameError):

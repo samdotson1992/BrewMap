@@ -30,17 +30,14 @@ class StringGenerator(object):
             else:
                 return json.dumps({'error':"User_already_exists"})   
         elif typ=="signIn":        
-            try:
-                cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_every FROM users_table WHERE username= %s AND passwrd= %s" ,(users['username'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
-                user_data = cur.fetchall()
-                print(user_data)
-                user_obj=[]
-                for i in user_data:
-                    user_obj.append({"username":i[0], "likes_hop":i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_every": i[6]})
-                print(json.dumps(obj))
-                return json.dumps(obj)
-            except (RuntimeError, TypeError, NameError):
-                print(RuntimeError,TypeError,NameError)
+            cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_every FROM users_table WHERE username= %s AND passwrd= %s" ,(users['username'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
+            user_data = cur.fetchall()
+            print(user_data)
+            user_obj=[]
+            for i in user_data:
+                user_obj.append({"username":i[0], "likes_hop":i[1], "likes_dark":[2], "no_like": i[3], "likes_weird": i[4], "likes_funky": i[5], "likes_every": i[6]})
+            print(json.dumps(obj))
+            return json.dumps(obj)
         else:
             print('Something with wrong with the signUp/sigIn')
 

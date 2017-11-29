@@ -12,6 +12,23 @@ function openTab(evt, TabName) {
      evt.currentTarget.className += " w3-red";
  }
 
+ function get_user(typ) {
+   $.ajax({
+       url: "users/"+typ,
+       type: 'GET',
+       dataType: 'json',
+       success(response) {
+           console.log(response);
+           var data = JSON.parse(response);
+           console.log(data);
+       },
+       error(jqXHR, status, errorThrown) {
+           console.log(status);
+           console.log(errorThrown);
+       }
+   });
+}
+
  function users(typ) {
      console.log("users is running")    
      if (typ=='signIn') {
@@ -50,6 +67,7 @@ function openTab(evt, TabName) {
          },
          success: function () {
              console.log("success");
+             get_user(typ)
          }
      });
  }

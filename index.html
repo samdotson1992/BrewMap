@@ -50,15 +50,19 @@
     </div>
 
     <div class="w3-card" id='map'> </div>
-    
+
     <div id="sidebar">
-        <h1>leaflet-sidebar</h1>
+        <div id="box" class="w3-container w3-half">
+            <div class="w3-panel">
+                <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-up')">Sign Up</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-in')">Sign In</button>
+            </div>
+            </div>
     </div>
 
     <script>
         L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtZG90c29uMTk5MiIsImEiOiJRc2VOSXpvIn0.Bhg-j6XJ2sQGI48SjKOuYg';
  var map = L.mapbox.map('map', 'mapbox.streets').setView([38.03785, -84.850783], 3);
-
 
  var sidebar = L.control.sidebar('sidebar', {
     position: 'right'

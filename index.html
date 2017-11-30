@@ -52,12 +52,45 @@
     <div class="w3-card" id='map'> </div>
 
     <div id="sidebar">
-        <div id="box" class="w3-container w3-half">
-            <div class="w3-panel">
-                <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-up')">Sign Up</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-in')">Sign In</button>
-            </div>
-            </div>
+        <div>  <button class="w3-bar-item w3-button tablink" onclick="sign_out()">Sign Out</button> </div>
+        
+            <div id="box" class="w3-container w3-half">
+                <div class="w3-panel">
+                    <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-up')">Sign Up</button>
+                    <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-in')">Sign In</button>
+                </div>
+                <div id="sign-up" class="w3-container w3-card Tab w3-margin-top">
+                    <ul id class="w3-container form">
+                        <p>
+                            <li><input class="w3-input" type="text" id="email_signup" /></li>
+                            <label>Email</label></p>
+                        <p>
+                            <li> <input class="w3-input" type="text" id="username_signup" /></li>
+                            <label>Username</label></p>
+                        <p>
+                            <li> <input class="w3-input" type="text" id="password_signup" /></li>
+                            <label>Password</label></p>
+                        <p>
+                            <li> <input class="w3-input" type="text" id="re_password_signup" /></li>
+                            <label>Retype password</label></p>
+                        <li><button class="w3-button w3-section w3-grey" onclick="users('signUp')">Submit</button></li>
+                    </ul>
+                </div>
+               <div id="sign-in" style="display:none" class="w3-container w3-card Tab w3-margin-top">
+                    <ul class="w3-container form">
+                        <p>
+                            <li><input class="w3-input" type="text" id="email_login" /></li>
+                            <label>Email</label></p>
+                        <p>
+                            <li> <input class="w3-input" type="text" id="username_login" /></li>
+                            <label>Username</label></p>
+                        <p>
+                            <li> <input class="w3-input" type="text" id="password_login" /></li>
+                            <label>Password</label></p>
+                        <li><button class="w3-button w3-section w3-grey" onclick="users('signIn')">Submit</button></li>
+                    </ul>
+                </div>    
+            </div>  
     </div>
 
     <script>

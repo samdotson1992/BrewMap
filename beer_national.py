@@ -33,7 +33,7 @@ class StringGenerator(object):
             cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_every FROM users_table WHERE username= %s AND passwrd= %s" ,(users['username'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
             user_data = cur.fetchall()
             if user_data==None:
-                newUser =json.dumps({'error':users['no_username']})
+                newUser =json.dumps([{'error':users['no_username']}])
                 return newUser
                 print(newUser)
             else:

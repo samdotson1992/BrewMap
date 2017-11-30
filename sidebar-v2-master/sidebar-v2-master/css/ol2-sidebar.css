@@ -57,10 +57,10 @@
       transition: all 80ms; }
       .sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
         color: #fff;
-        background-color: rgba(0, 60, 136, 0.6); }
+        background-color: rgba(255, 255, 255, 0.6); }
       .sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
         color: #fff;
-        background-color: #0074d9; }
+        background-color: #cdd9e2; }
       .sidebar-tabs > li.disabled, .sidebar-tabs > ul > li.disabled {
         color: rgba(255, 255, 255, 0.4); }
         .sidebar-tabs > li.disabled:hover, .sidebar-tabs > ul > li.disabled:hover {
@@ -119,7 +119,7 @@
   line-height: 40px;
   font-size: 14.4pt;
   color: #fff;
-  background-color: #0074d9; }
+  background-color: #cdd9e2; }
   .sidebar-right .sidebar-header {
     padding-left: 40px; }
 

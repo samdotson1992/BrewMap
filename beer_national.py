@@ -39,7 +39,7 @@ class StringGenerator(object):
                 return noUser
             else:
                 print(user_data)
-                user_data_json = json.dumps({"username":us er_data[0], "likes_hop":user_data[1], "likes_dark":user_data[2], "no_like": user_data[3], "likes_weird": user_data[4], "likes_funky": user_data[5], "likes_every": user_data[6]})
+                user_data_json = json.dumps({"username":user_data[0], "likes_hop":user_data[1], "likes_dark":user_data[2], "no_like": user_data[3], "likes_weird": user_data[4], "likes_funky": user_data[5], "likes_every": user_data[6]})
                 print(user_data_json)
                 print("You exist!")
                 return user_data_json

@@ -115,10 +115,11 @@
 .sidebar-header {
   margin: -10px -20px 0;
   height: 40px;
-  padding: 0 20px;
+  padding: 0 10px;
   text-align: center;
-  line-height: 40px;
-  font-size: 20pt;
+  line-height: 5em;
+  letter-spacing: 1px;
+  font-size: 30pt;
   vertical-align: middle;
   color: black;
   font-family: 'Roboto Mono', monospace;

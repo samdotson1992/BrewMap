@@ -118,8 +118,9 @@
   padding: 0 20px;
   line-height: 40px;
   font-size: 14.4pt;
-  color: #fff;
-  background-color: #b2bfca; }
+  color: black;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #999a9b; }
   .sidebar-right .sidebar-header {
     padding-left: 40px; }
 

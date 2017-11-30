@@ -53,10 +53,11 @@
 
     <div id="sidebar">
             <div class="w3-bar w3-black">
-                    <button class="w3-bar-item w3-button" onclick="changeTab('London')">Account</button>
-                    <button class="w3-bar-item w3-button" onclick="changeTab('Paris')">Brewery</button>
-                    <button class="w3-bar-item w3-button" onclick="ChangeTab('Tokyo')">About</button>
+                    <button class="w3-bar-item w3-button" onclick="openTab('event','account')">Account</button>
+                    <button class="w3-bar-item w3-button" onclick="openTab('event', 'brewery')">Brewery</button>
+                    <button class="w3-bar-item w3-button" onclick="openTab('event', 'about')">About</button>
                   </div>
+                  <div id="account" class="w3-container w3-card">
         <div>  <button class="w3-bar-item w3-button tablink" onclick="sign_out()">Sign Out</button> </div>
         
             <div id="box" class="w3-container w3-half">
@@ -96,6 +97,7 @@
                     </ul>
                 </div>    
             </div>  
+            </div>
     </div>
 
     <script>

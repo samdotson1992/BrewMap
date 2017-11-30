@@ -73,9 +73,10 @@
 
 
  var sidebar = L.control.sidebar('sidebar', {
-     position: 'right'
- }).addTo(map);
+    position: 'right'
+});
 
+map.addControl(sidebar);
 
  map.addControl(L.control.locate({
      locateOptions: {

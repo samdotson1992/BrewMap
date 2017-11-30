@@ -12,6 +12,7 @@ conn.autocommit= True
 class StringGenerator(object):
     @cherrypy.expose
     @cherrypy.tools.json_in() 
+    @cherrypy.tools.json_out()
     def users(self, typ=""):
         users = cherrypy.request.json
         print(cherrypy.request.json)
@@ -80,7 +81,7 @@ class StringGenerator(object):
     @cherrypy.expose
     def index(self):
         return open('index.html')    
-    
+
     @cherrypy.expose
     def breweries_list(self):
         return open('breweries_list.html')

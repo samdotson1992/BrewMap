@@ -80,10 +80,6 @@ class StringGenerator(object):
     @cherrypy.expose
     def index(self):
         return open('index.html')    
-
-    @cherrypy.expose
-    def about(self):
-        return open('about.html')
     
     @cherrypy.expose
     def breweries_list(self):

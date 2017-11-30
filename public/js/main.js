@@ -24,7 +24,7 @@ function get_user(typ) {
         },
         error(jqXHR, status, errorThrown) {
             console.log(status);
-            console.log("No response from get_user")
+            console.log("No response from get_user");
             console.log(errorThrown);
         }
     });
@@ -43,7 +43,7 @@ function users(typ) {
         var email = document.getElementById('email_signup').value
         var passwrd = document.getElementById('password_signup').value
         var re_password_signup = document.getElementById('re_password_signup').value
-    }
+    
     if (re_password_signup !== passwrd) {
         window.alert("Passwords don't match")
     } else {
@@ -53,8 +53,8 @@ function users(typ) {
             "passwrd": passwrd
         });
     }
-
-} else {
+    }
+ else {
     window.alert("He's dead Jim")
 }
 

@@ -37,7 +37,6 @@ function openTab(evt, TabName) {
          'email': document.getElementById('email_login').value,
          'passwrd': document.getElementById('password_login').value
        })
-       console.log(data)
     }
     else if(typ='signUp'){
          var obj = {
@@ -49,12 +48,15 @@ function openTab(evt, TabName) {
     if (obj.re_password_signup!==obj.passwrd){
         window.alert("Passwords don't match")
     }
-    else {data= JSON.stringify({"username":obj.username,"email":obj.email,"passwrd":obj.passwrd});}
+    else {data= JSON.stringify({"username":obj.username,"email":obj.email,"passwrd":obj.passwrd});
+}
  
     }
     else {
         window.alert("He's dead Jim")
 }
+
+console.log(data)
 
      $.ajax({
          type: "POST",

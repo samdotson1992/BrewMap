@@ -23,11 +23,11 @@
     <link rel="stylesheet" href="/static/css/MarkerCluster.Default.css" />
     <script src="/static/js/leaflet.markercluster.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-  
+
     <link rel="stylesheet" type="text/css" href="/static/css/L.Control.Sidebar.css" />
     <link rel="stylesheet" type="text/scss" href="/static/css/L.Control.Sidebar.scss" />
     <script src="/static/js/L.Control.Sidebar.js" charset="utf-8"></script>
-     <!--
+    <!--
     <link rel="stylesheet" href="/static/css/leaflet-sidebar.css" />
     <script src="/static/js/L.Control.Sidebar.js" charset="utf-8"></script>
     <script src="/static/js/leaflet-sidebar.js" charset="utf-8"></script>
@@ -38,28 +38,41 @@
     <script src="/static/js/main.js"></script>
 
 </head>
+
 <body>
 
     <div class="w3-bar-block w3-light-blue w3-small w3-card w3-panel w3-display-container">
         <h1 style="font-family: 'Ewert', cursive; font-weight: 500; margin-bottom:0; padding-bottom:0;" class="title w3-bar-item w3-xxxlarge">The Great Map of Brews</h1>
-        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="index">Map</a> </h3>
-        <h3 style="float:right; margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="join">Login or Join</a></h3>
-        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="about">About</a></h3>
-        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="breweries_list">Ranked List</a></h3>
-        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;"><a class="w3-bar-item w3-button" href="profile">Profile</a></h3>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;">
+            <a class="w3-bar-item w3-button" href="index">Map</a>
+        </h3>
+        <h3 style="float:right; margin-bottom:0; padding-bottom:0;">
+            <a class="w3-bar-item w3-button" href="join">Login or Join</a>
+        </h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;">
+            <a class="w3-bar-item w3-button" href="about">About</a>
+        </h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;">
+            <a class="w3-bar-item w3-button" href="breweries_list">Ranked List</a>
+        </h3>
+        <h3 style="float:right;  margin-bottom:0; padding-bottom:0;">
+            <a class="w3-bar-item w3-button" href="profile">Profile</a>
+        </h3>
     </div>
 
     <div class="w3-card" id='map'> </div>
 
     <div id="sidebar">
-            <div class="w3-bar w3-black">
-                    <button class="w3-bar-item w3-button" onclick="openTab('event','account')">Account</button>
-                    <button class="w3-bar-item w3-button" onclick="openTab('event', 'brewery')">Brewery</button>
-                    <button class="w3-bar-item w3-button" onclick="openTab('event', 'about')">About</button>
-                  </div>
-                  <div id="account" class="w3-container w3-card">
-        <div>  <button class="w3-bar-item w3-button tablink" onclick="sign_out()">Sign Out</button> </div>
-        
+        <div class="w3-bar w3-black">
+            <button class="w3-bar-item w3-button" onclick="openTab('event','account')">Account</button>
+            <button class="w3-bar-item w3-button" onclick="openTab('event', 'brewery')">Brewery</button>
+            <button class="w3-bar-item w3-button" onclick="openTab('event', 'about')">About</button>
+        </div>
+        <div id="account" class="w3-container w3-card">
+            <div>
+                <button class="w3-bar-item w3-button tablink" onclick="sign_out()">Sign Out</button>
+            </div>
+
             <div id="box" class="w3-container w3-half">
                 <div class="w3-panel">
                     <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-up')">Sign Up</button>
@@ -68,88 +81,118 @@
                 <div id="sign-up" class="w3-container w3-card Tab w3-margin-top">
                     <ul id class="w3-container form">
                         <p>
-                            <li><input class="w3-input" type="text" id="email_signup" /></li>
-                            <label>Email</label></p>
+                            <li>
+                                <input class="w3-input" type="text" id="email_signup" />
+                            </li>
+                            <label>Email</label>
+                        </p>
                         <p>
-                            <li> <input class="w3-input" type="text" id="username_signup" /></li>
-                            <label>Username</label></p>
+                            <li>
+                                <input class="w3-input" type="text" id="username_signup" />
+                            </li>
+                            <label>Username</label>
+                        </p>
                         <p>
-                            <li> <input class="w3-input" type="text" id="password_signup" /></li>
-                            <label>Password</label></p>
+                            <li>
+                                <input class="w3-input" type="text" id="password_signup" />
+                            </li>
+                            <label>Password</label>
+                        </p>
                         <p>
-                            <li> <input class="w3-input" type="text" id="re_password_signup" /></li>
-                            <label>Retype password</label></p>
-                        <li><button class="w3-button w3-section w3-grey" onclick="users('signUp')">Submit</button></li>
+                            <li>
+                                <input class="w3-input" type="text" id="re_password_signup" />
+                            </li>
+                            <label>Retype password</label>
+                        </p>
+                        <li>
+                            <button class="w3-button w3-section w3-grey" onclick="users('signUp')">Submit</button>
+                        </li>
                     </ul>
                 </div>
-               <div id="sign-in" style="display:none" class="w3-container w3-card Tab w3-margin-top">
+                <div id="sign-in" style="display:none" class="w3-container w3-card Tab w3-margin-top">
                     <ul class="w3-container form">
                         <p>
-                            <li><input class="w3-input" type="text" id="email_login" /></li>
-                            <label>Email</label></p>
+                            <li>
+                                <input class="w3-input" type="text" id="email_login" />
+                            </li>
+                            <label>Email</label>
+                        </p>
                         <p>
-                            <li> <input class="w3-input" type="text" id="username_login" /></li>
-                            <label>Username</label></p>
+                            <li>
+                                <input class="w3-input" type="text" id="username_login" />
+                            </li>
+                            <label>Username</label>
+                        </p>
                         <p>
-                            <li> <input class="w3-input" type="text" id="password_login" /></li>
-                            <label>Password</label></p>
-                        <li><button class="w3-button w3-section w3-grey" onclick="users('signIn')">Submit</button></li>
+                            <li>
+                                <input class="w3-input" type="text" id="password_login" />
+                            </li>
+                            <label>Password</label>
+                        </p>
+                        <li>
+                            <button class="w3-button w3-section w3-grey" onclick="users('signIn')">Submit</button>
+                        </li>
                     </ul>
-                </div>    
-            </div>  
+                </div>
             </div>
+        </div>
+        <div id="brewery" class="w3-container w3-card">
+            <h1> BEER! </h1>
+        </div>
+        
+        <div id="about" class="w3-container w3-card">
+            <h1>What is the great map of Brews?</h1>
+            <p>Do you like beer? Do you lke maps and data? If so you've come to the right place. You can use this map to track
+                where you've been, rate breweries and see your current location in relation to nearby breweries.</p>
+        </div>
+
     </div>
 
     <script>
         L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtZG90c29uMTk5MiIsImEiOiJRc2VOSXpvIn0.Bhg-j6XJ2sQGI48SjKOuYg';
- var map = L.mapbox.map('map', 'mapbox.streets').setView([38.03785, -84.850783], 3);
+        var map = L.mapbox.map('map', 'mapbox.streets').setView([38.03785, -84.850783], 3);
 
- var sidebar = L.control.sidebar('sidebar', {
-    position: 'right'
-});
+        var sidebar = L.control.sidebar('sidebar', {
+            position: 'right'
+        });
 
-map.addControl(sidebar);
+        map.addControl(sidebar);
 
-sidebar.toggle();
+        sidebar.toggle();
 
- map.addControl(L.control.locate({
-     locateOptions: {
-         maxZoom: 10
-     }
+        map.addControl(L.control.locate({
+            locateOptions: {
+                maxZoom: 10
+            }
 
- }));
+        }));
 
- var beer = omnivore.csv("/static/datasets/Breweries.csv", null, L.mapbox.featureLayer()).on("ready", function () {
-     var markers = L.markerClusterGroup({
-         chunkedLoading: true
-     });
-
-
-     beer.on('click', function (a) {
-         console.log(a.layer.feature.properties.name);
-         var content = a.layer.feature.properties.name;
-
-     })
+        var beer = omnivore.csv("/static/datasets/Breweries.csv", null, L.mapbox.featureLayer()).on("ready", function () {
+            var markers = L.markerClusterGroup({
+                chunkedLoading: true
+            });
 
 
-     markers.addLayer(beer);
-     markers.bindPopup(function (layer) {
-         console.log(layer.feature.properties.name)
-         return layer.feature.properties.name
-     }).addTo(map);
+            beer.on('click', function (a) {
+                console.log(a.layer.feature.properties.name);
+                var content = a.layer.feature.properties.name;
+
+            })
 
 
- });
+            markers.addLayer(beer);
+            markers.bindPopup(function (layer) {
+                console.log(layer.feature.properties.name)
+                return layer.feature.properties.name
+            }).addTo(map);
 
 
- L.easyButton('fa-home', function () {
-     map.setView([38.03785, -84.850783], 4);
- }).addTo(map);
+        });
 
 
-
-
-
+        L.easyButton('fa-home', function () {
+            map.setView([38.03785, -84.850783], 4);
+        }).addTo(map);
     </script>
 </body>
 

@@ -27,7 +27,7 @@ class StringGenerator(object):
                 cur.execute("INSERT INTO users_table (username, email, passwrd) VALUES (%s,%s,%s)",(users['username'],users['email'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest(),))
                 newUser =json.dumps({'username':users['username']})
                 print(newUser)
-                return newUser
+                return [newUser]
             else:
                 return json.dumps({'error':"User_already_exists"})   
         elif typ=="signIn":        
@@ -36,13 +36,13 @@ class StringGenerator(object):
             if user_data==[]:
                 noUser = json.dumps({'error':"no_username"})
                 print("You don't exist", noUser)
-                return noUser
+                return [noUser]
             else:
                 print(user_data)
                 user_data_json = json.dumps({"username":user_data[0], "likes_hop":user_data[1], "likes_dark":user_data[2], "no_like": user_data[3], "likes_weird": user_data[4], "likes_funky": user_data[5], "likes_every": user_data[6]})
                 print(user_data_json)
                 print("You exist!")
-                return user_data_json
+                return [user_data_json]
         else:
             print('Something with wrong with the signUp/sigIn')
     @cherrypy.expose

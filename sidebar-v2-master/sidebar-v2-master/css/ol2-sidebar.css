@@ -57,7 +57,7 @@
       transition: all 80ms; }
       .sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
         color: #fff;
-        background-color: rgba(0, 60, 136, 0.6); }
+        background-color: rgba(255, 255, 255, 0.6); }
       .sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
         color: #fff;
         background-color: #cdd9e2; }

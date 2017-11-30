@@ -32,7 +32,7 @@ class StringGenerator(object):
         elif typ=="signIn":        
             cur.execute("SELECT username, likes_hop, likes_dark, no_like, likes_weird, likes_funky, likes_every FROM users_table WHERE username= %s AND passwrd= %s" ,(users['username'],hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))
             user_data = cur.fetchall()
-            if user_data==None:
+            if user_data==[]:
                 noUser = json.dumps({'error':"no_username"})
                 print("You don't exist" )
                 return noUser

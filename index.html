@@ -64,20 +64,12 @@
 
     <div id="sidebar">
         <div class="w3-bar w3-black">
-            <button class="w3-bar-item w3-button tablink" onclick="openTab('event','account')">Account</button>
             <button class="w3-bar-item w3-button tablink" onclick="openTab('event', 'brewery')">Brewery</button>
             <button class="w3-bar-item w3-button tablink" onclick="openTab('event', 'about')">About</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-up')">Sign Up</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-in')">Sign In</button>
+            <button class="w3-bar-item w3-button tablink" onclick="sign_out()">Sign Out</button>
         </div>
-        <div id="account" class="w3-container Tab w3-card">
-            <div>
-                <button class="w3-bar-item w3-button tablink" onclick="sign_out()">Sign Out</button>
-            </div>
-
-            <div id="box" class="w3-container w3-half">
-                <div class="w3-panel">
-                    <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-up')">Sign Up</button>
-                    <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-in')">Sign In</button>
-                </div>
                 <div id="sign-up" class="w3-container w3-card Tab w3-margin-top">
                     <ul id class="w3-container form">
                         <p>
@@ -134,7 +126,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
         </div>
         <div id="brewery" class="w3-container Tab w3-card">
             <h1> BEER! </h1>

@@ -43,35 +43,34 @@ function users(typ) {
         var email = document.getElementById('email_signup').value
         var passwrd = document.getElementById('password_signup').value
         var re_password_signup = document.getElementById('re_password_signup').value
-    
-    if (re_password_signup !== passwrd) {
-        window.alert("Passwords don't match")
+
+        if (re_password_signup !== passwrd) {
+            window.alert("Passwords don't match")
+        } else {
+            data = JSON.stringify({
+                "username": username,
+                "email": email,
+                "passwrd": passwrd
+            });
+        }
     } else {
-        data = JSON.stringify({
-            "username": username,
-            "email": email,
-            "passwrd": passwrd
-        });
+        window.alert("He's dead Jim")
     }
-    }
- else {
-    window.alert("He's dead Jim")
-}
 
-console.log(data)
+    console.log(data)
 
-$.ajax({
-    type: "POST",
-    url: "users/" + typ,
-    data: data,
-    contentType: 'application/json',
-    dataType: 'json',
-    error: function (request, status, error) {
-        console.log(request.responseText);
-    },
-    success: function () {
-        console.log("success");
-        get_user(typ)
-    }
-});
+    $.ajax({
+        type: "POST",
+        url: "users/" + typ,
+        data: data,
+        contentType: 'application/json',
+        dataType: 'json',
+        error: function (request, status, error) {
+            console.log(request.responseText);
+        },
+        success: function () {
+            console.log("success");
+            get_user(typ)
+        }
+    });
 }

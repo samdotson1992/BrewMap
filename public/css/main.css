@@ -1,12 +1,12 @@
-        #map {
-            width: 100%;
-            height: 600px
-        }
-  li{
+#map {
+    width: 100%;
+    height: 600px
+}
+
+li {
     list-style-type: none;
 }
 
-.w3-bar-item
-{
+.w3-bar-item {
     display: block;
 }

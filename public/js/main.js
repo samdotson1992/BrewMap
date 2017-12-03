@@ -53,8 +53,7 @@ function users(typ) {
                 "passwrd": passwrd
             });
         }
-    }
-    else {
+    } else {
         window.alert("He's dead Jim")
     }
 

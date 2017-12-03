@@ -21,20 +21,11 @@ class StringGenerator(object):
         try:
             print(typ)
         except:
-<<<<<<< HEAD
-            print("What typ?")    
-        if typ=="signUp": 
-            cur.execute("(SELECT * FROM users_table WHERE username= %s OR email= %s)",(str(users['username']),str(users['email'],)))
-            user_signin=cur.fetchone()
-            print(user_signin)
-            if cur.fetchone()==None:
-=======
             print("What typ?")
         if typ == "signUp":
             cur.execute("(SELECT * FROM users_table WHERE username= %s OR email= %s)",
                         (str(users['username']), str(users['email'])))
             if cur.fetchone() == None:
->>>>>>> 973b5b5aff324ea3cafb3acbe11eebbdb9571e3e
                 print("new user")
                 cur.execute("INSERT INTO users_table (username, email, passwrd) VALUES (%s,%s,%s)",
                     (users['username'], users['email'], hashlib.md5((users['passwrd']).encode('utf-8')).hexdigest()))

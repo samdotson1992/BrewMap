@@ -70,7 +70,7 @@ class StringGenerator(object):
             cur.execute("(SELECT * FROM breweries WHERE name=%s)",name)  
             data = cur.fetchone()
             print(data)
-             for i in data:
+            for i in data:
                 obj.append({
                 "longitude": i[0],
                 "latitude": i[1],

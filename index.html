@@ -182,7 +182,9 @@
             console.log(response);
             var data = JSON.parse(response);
                     console.log(data);
-            document.getElementById("brewery_select").innerHTML =data.name
+                    debugger
+            document.getElementById("brewery_select").innerHTML =data
+                    debugger
         },
         error(jqXHR, status, errorThrown) {
             console.log(status);

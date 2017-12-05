@@ -163,7 +163,7 @@
             markers.bindPopup(function (layer) {
                 name =  layer.feature.properties.name
                 return name
-            }).on('click', get_brewery(name)).addTo(map);
+            }).on('click', get_brewery).addTo(map);
         });
 
         /*

@@ -124,7 +124,7 @@
             </ul>
         </div>
         <div id="brewery" class="w3-container w3-card Tab w3-margin-top">
-            <h1> BEER! </h1>
+            <h1 id="brewery_select"> </h1>
         </div>
 
         <div id="about" class="w3-container w3-card Tab w3-margin-top">
@@ -163,19 +163,35 @@
             beer.on('click', function (a) {
                 console.log(a.layer.feature.properties.name);
                 var content = a.layer.feature.properties.name;
-
             })
-
 
             markers.addLayer(beer);
             markers.bindPopup(function (layer) {
                 console.log(layer.feature.properties.name)
-                return layer.feature.properties.name
-            }).addTo(map);
-
-
+                name =  layer.feature.properties.name
+                return name
+            }).on('click', get_brewery).addTo(map);
         });
 
+
+    function get_brewery(name) {
+    $.ajax({
+        url: "get_brewery/" + name,
+        type: 'GET',
+        dataType: 'json',
+        success(response) {
+            console.log(response);
+            var data = JSON.parse(response);
+            console.log(data);
+            document.getElementById("brewery_select").innerHTML =data
+        },
+        error(jqXHR, status, errorThrown) {
+            console.log(status);
+            console.log("No response from get_brewery");
+            console.log(errorThrown);
+        }
+    });
+}
 
         L.easyButton('fa-home', function () {
             map.setView([38.03785, -84.850783], 4);

@@ -62,6 +62,28 @@ class StringGenerator(object):
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
+    def get_brewery(self, name=""):
+        print(cherrypy.session.id)
+        try:
+            print(name)
+            cur.execute("SELECT * FROM breweries WHERE name=%s"),name)  
+            data = cur.fetchone()
+        except: 
+            print("Error with get brewery")
+            data="Opps, something went wrong..."
+        print(data)
+        obj = []
+        for i in data:
+            obj.append({
+                "longitude": i[0],
+                "latitude": i[1],
+                "name": i[2]}) 
+        print(json.dumps(obj))
+        return json.dumps(obj)     
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
     def get_data(self, param=""):
         print(cherrypy.session.id)
         n = 15

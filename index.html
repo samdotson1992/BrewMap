@@ -170,7 +170,7 @@
                 console.log(layer.feature.properties.name)
                 name =  layer.feature.properties.name
                 return name
-            }).on('click', get_brewery).addTo(map);
+            }).on('click', get_brewery(name)).addTo(map);
         });
 
 

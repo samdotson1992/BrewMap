@@ -66,7 +66,7 @@ class StringGenerator(object):
         print(cherrypy.session.id)
         try:
             print(name)
-            cur.execute("SELECT * FROM breweries WHERE name=%s"),name)  
+            cur.execute("(SELECT * FROM breweries WHERE name=%s)",name)  
             data = cur.fetchone()
         except: 
             print("Error with get brewery")

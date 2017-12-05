@@ -64,20 +64,20 @@ class StringGenerator(object):
     @cherrypy.tools.json_out()
     def get_brewery(self, name=""):
         print(cherrypy.session.id)
+        obj = []
         try:
-            print(name)
+            print("Name: ", name)
             cur.execute("(SELECT * FROM breweries WHERE name=%s)",name)  
             data = cur.fetchone()
-        except: 
-            print("Error with get brewery")
-            data="Opps, something went wrong..."
-        print(data)
-        obj = []
-        for i in data:
-            obj.append({
+            print(data)
+             for i in data:
+                obj.append({
                 "longitude": i[0],
                 "latitude": i[1],
                 "name": i[2]}) 
+        except: 
+            print("Error with get brewery")
+            obj = ["Opps, something went wrong..."]
         print(json.dumps(obj))
         return json.dumps(obj)     
 

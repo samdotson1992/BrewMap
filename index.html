@@ -182,8 +182,12 @@
         success(response) {
             console.log(response);
             var data = JSON.parse(response);
-            console.log(data);
-            document.getElementById("brewery_select").innerHTML =data
+                    console.log(data);
+                    list = "<tr><th>Name</th><th> Latitude</th><th>Longitude</th>";
+                    for (i in data) {
+                        list += "<tr><th>" + (data[i].name) + "</th><th>" + (data[i].latitude) + "</th><th>" + (data[i].longitude) + "</th></tr>"
+                    }
+            document.getElementById("brewery_select").innerHTML =list
         },
         error(jqXHR, status, errorThrown) {
             console.log(status);

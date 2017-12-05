@@ -64,6 +64,9 @@ class StringGenerator(object):
     @cherrypy.tools.json_out()
     def get_brewery(self, name=""):
         print(cherrypy.session.id)
+        for i in name:
+            print(i)
+        name=str(name)
         obj = []
         try:
             print("Name: ", name)

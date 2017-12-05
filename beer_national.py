@@ -67,7 +67,7 @@ class StringGenerator(object):
         name=str(name)
         obj = []
         print("Name: ", name)
-        cur.execute("(SELECT * FROM breweries WHERE name = %s)", str(name))  
+        cur.execute("(SELECT * FROM breweries WHERE name = %s)", [(name)])  
         data = cur.fetchone()
         print(data)
         for i in data:

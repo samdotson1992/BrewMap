@@ -159,12 +159,6 @@
                 chunkedLoading: true
             });
 
-/*
-            beer.on('click', function (a) {
-                var content = a.layer.feature.properties.name;
-            })
-            */
-
             markers.addLayer(beer);
             markers.bindPopup(function (layer) {
                 name =  layer.feature.properties.name
@@ -193,6 +187,8 @@
 }
 */
 
+//This is where the Maddness is!
+
 function get_brewery(name){
        $.ajax({
                 url: "get_brewery/"+name,
@@ -215,7 +211,7 @@ function get_brewery(name){
                 }
             })
         }
-        
+
         L.easyButton('fa-home', function () {
             map.setView([38.03785, -84.850783], 4);
         }).addTo(map);

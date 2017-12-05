@@ -159,30 +159,29 @@
                 chunkedLoading: true
             });
 
-
+/*
             beer.on('click', function (a) {
-                console.log(a.layer.feature.properties.name);
                 var content = a.layer.feature.properties.name;
             })
+            */
 
             markers.addLayer(beer);
             markers.bindPopup(function (layer) {
-                console.log(layer.feature.properties.name)
                 name =  layer.feature.properties.name
                 return name
             }).on('click', get_brewery(name)).addTo(map);
         });
 
+        /*
     function get_brewery(name) {
     $.ajax({
         url: "get_brewery/" + name,
         type: 'GET',
         dataType: 'json',
         success(response) {
-            console.log(response);
+            console.log("It's respoinsing ": response);
             var data = JSON.parse(response);
-                    console.log(data);
-                    debugger
+                    console.log("this is the data: " data);
             document.getElementById("brewery_select").innerHTML =data
         },
         error(jqXHR, status, errorThrown) {
@@ -192,7 +191,31 @@
         }
     });
 }
+*/
 
+function get_brewery(name){
+       $.ajax({
+                url: "get_brewery/"+name,
+                type: 'GET',
+                dataType: 'json',
+                success(response) {
+                    console.log(response);
+                    var data = JSON.parse(response);
+                    console.log(data);
+                    list = "<tr><th>Name</th><th> Latitude</th><th>Longitude</th>";
+                    for (i in data) {
+                        list += "<tr><th>" + (data[i].name) + "</th><th>" + (data[i].latitude) + "</th><th>" + (data[i].longitude) + "</th></tr>"
+                    }
+                    document.getElementById("brewery_select").innerHTML =list;
+                },
+                error(jqXHR, status, errorThrown) {
+                    console.log(status);
+                    console.log("No response from get_brewery");
+                    console.log(errorThrown);
+                }
+            })
+        }
+        
         L.easyButton('fa-home', function () {
             map.setView([38.03785, -84.850783], 4);
         }).addTo(map);

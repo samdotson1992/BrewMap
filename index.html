@@ -48,6 +48,8 @@
             <button class="w3-bar-item w3-button tablink" onclick="openTab('event', 'about')">About</button>
             <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-up')">Sign Up</button>
             <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sign-in')">Sign In</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'account')">Account</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'settings')">Settings</button>
             <button class="w3-bar-item w3-button tablink" onclick="sign_out()">Sign Out</button>
         </div>
         <div id="sign-up" class="w3-container w3-card Tab w3-margin-top">
@@ -117,6 +119,31 @@
                 <div class="w3-table-all" id="brewery_select" style="width:100%"> </div>
         </div>
 
+        <div id="account" class="w3-card Tab w3-margin-top">
+        
+        
+        </div>
+
+
+        <div id="settings" class="w3-card Tab w3-margin-top">
+              
+        <form class="w3-container w3-card-4" action="/action_page.php">
+        <h1>Select Your Free Option</h1>
+
+        <select class="w3-select" name="option">
+            <option value="" disabled selected>Change Basemap</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+
+        <p><button class="w3-btn w3-teal">Done</button></p>
+        </form>    
+        
+            
+        </div>
+
+
         <div id="about" class="w3-container w3-card Tab w3-margin-top">
             <h1>What is the great map of Brews?</h1>
             <p>Do you like beer? Do you lke maps and data? If so you've come to the right place. You can use this map to track
@@ -126,7 +153,22 @@
 
     <script>
         L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtZG90c29uMTk5MiIsImEiOiJRc2VOSXpvIn0.Bhg-j6XJ2sQGI48SjKOuYg';
-        var map = L.mapbox.map('map', 'mapbox.streets').setView([38.03785, -84.850783], 3);
+
+        var grayscale = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution}),
+    streets   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
+        var map = L.map('map', {
+    center: [38.03785, -84.850783],
+    zoom: 10,
+    layers: [grayscale]
+});   
+
+L.control.layers(baseMaps).addTo(map);
+
+var baseMaps = {
+    "<span style='color: gray'>Grayscale</span>": grayscale,
+    "Streets": streets
+};
+   
 
         var sidebar = L.control.sidebar('sidebar', {
             position: 'right'

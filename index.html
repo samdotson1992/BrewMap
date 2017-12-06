@@ -165,7 +165,7 @@
                 return name
             }).on('click', get_brewery).addTo(map);
         });
-
+        
         /*
     function get_brewery(name) {
     $.ajax({
@@ -189,7 +189,8 @@
 
 //This is where the Maddness is!
 
-function get_brewery(name){
+function get_brewery(event){
+    var name = event.layer.feature.properties.name
        $.ajax({
                 url: "get_brewery/"+name,
                 type: 'GET',

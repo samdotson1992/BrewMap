@@ -178,7 +178,7 @@ function get_brewery(event){
                     for (i in data) {
                         brewery_info = "<div><h1>" + (data[i].name) + "</h1> <p>" + (data[i].latitude) + ", " +
                     (data[i].longitude) + " </p></div><div> <a href= " + (data[i].website_url)+ ">" + (data[i].website_url) + 
-                    " </a> <img src= "+ (data[i].image_url) +" alt= "+ (data[i].name) + " width="500" height="377"> </div>"
+                    " </a> <img src= "+ (data[i].image_url) +" alt= "+ (data[i].name) + " width='50px' height='37px'></div>"
                     }
                     document.getElementById("brewery_select").innerHTML =brewery_info;
                 },

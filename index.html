@@ -107,6 +107,13 @@
             </ul>
         </div>
         <div id="brewery" class="w3-card Tab w3-margin-top">
+
+                <span class="fa fa-star is_null"></span>
+                <span class="fa fa-star is_null"></span>
+                <span class="fa fa-star is_null"></span>
+                <span class="fa fa-star is_null"></span>
+                <span class="fa fa-star is_null"></span>
+
                 <div class="w3-table-all" id="brewery_select" style="width:100%"> </div>
         </div>
 
@@ -158,8 +165,20 @@ function get_brewery(event){
                     console.log(response);
                     var data = JSON.parse(response);
                     console.log(data);
+                    if(data[i].image_url===null){
+                       var image_url = '<form class="w3-container"><p><label>Oh,no there"s no picture. Would you like to add a URl to an image?</label><input class="w3-input" type="text"></p></form>'
+                    } 
+                    else {var image_url=data[i].image_url}
+
+                    if(data[i].website_url===null){
+                       var website_url = '<form class="w3-container"><p><label>Oh,no there"s no website URL. Would you care to add one?</label><input class="w3-input" type="text"></p></form>'
+                    } 
+                    else {var website_url = data[i].website_url}
+
                     for (i in data) {
-                        brewery_info = "<div><h1>" + (data[i].name) + "</h1> <p>" + (data[i].latitude) + ", " + (data[i].longitude) + "</p></div>"
+                        brewery_info = "<div><h1>" + (data[i].name) + "</h1> <p>" + (data[i].latitude) + ", " +
+                    (data[i].longitude) + " </p></div><div> <a href= " + (data[i].website_url)+ ">" + (data[i].website_url) + 
+                    " </a> <img src= "+ (data[i].image_url) +" alt= "+ (data[i].name) + " width="500" height="377"> </div>"
                     }
                     document.getElementById("brewery_select").innerHTML =brewery_info;
                 },

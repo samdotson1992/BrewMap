@@ -59,8 +59,6 @@ class StringGenerator(object):
         else:
             print('Something with wrong with the signUp/sigIn')
 
-
-#This is where the maddness is!
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
@@ -75,11 +73,13 @@ class StringGenerator(object):
         obj.append({
         "longitude": data[0],
         "latitude": data[1],
-        "name": data[2]}) 
+        "name": data[2]}, 
+        "rating": data[3],
+        "image_url": data[4],
+        "website_url": data[5]}) 
         print(json.dumps(obj))
         return json.dumps(obj)   
   
-
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()

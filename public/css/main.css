@@ -10,3 +10,13 @@ li {
 .w3-bar-item {
     display: block;
 }
+
+
+.checked {
+    color: orange;
+}
+
+.is_null{
+ 
+    color: grey;
+}

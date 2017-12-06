@@ -117,7 +117,6 @@
         </div>
     </div>
 
-
     <script>
         L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtZG90c29uMTk5MiIsImEiOiJRc2VOSXpvIn0.Bhg-j6XJ2sQGI48SjKOuYg';
         var map = L.mapbox.map('map', 'mapbox.streets').setView([38.03785, -84.850783], 3);
@@ -149,29 +148,6 @@
             }).on('click', get_brewery).addTo(map);
         });
         
-        /*
-    function get_brewery(name) {
-    $.ajax({
-        url: "get_brewery/" + name,
-        type: 'GET',
-        dataType: 'json',
-        success(response) {
-            console.log("It's respoinsing ": response);
-            var data = JSON.parse(response);
-                    console.log("this is the data: " data);
-            document.getElementById("brewery_select").innerHTML =data
-        },
-        error(jqXHR, status, errorThrown) {
-            console.log(status);
-            console.log("No response from get_brewery");
-            console.log(errorThrown);
-        }
-    });
-}
-*/
-
-//This is where the Maddness is!
-
 function get_brewery(event){
     var name = event.layer.feature.properties.name
        $.ajax({
@@ -182,11 +158,10 @@ function get_brewery(event){
                     console.log(response);
                     var data = JSON.parse(response);
                     console.log(data);
-                    list = "<tr><th>Name</th><th> Latitude</th><th>Longitude</th>";
                     for (i in data) {
-                        list += "<tr><th>" + (data[i].name) + "</th><th>" + (data[i].latitude) + "</th><th>" + (data[i].longitude) + "</th></tr>"
+                        brewery_info = "<div><h1>" + (data[i].name) + "</h1> <p>" + (data[i].latitude) + ", " + (data[i].longitude) + "</p></div>"
                     }
-                    document.getElementById("brewery_select").innerHTML =list;
+                    document.getElementById("brewery_select").innerHTML =brewery_info;
                 },
                 error(jqXHR, status, errorThrown) {
                     console.log(status);

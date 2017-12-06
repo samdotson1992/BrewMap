@@ -73,7 +73,7 @@ class StringGenerator(object):
         obj.append({
         "longitude": data[0],
         "latitude": data[1],
-        "name": data[2]}, 
+        "name": data[2], 
         "rating": data[3],
         "image_url": data[4],
         "website_url": data[5]}) 
